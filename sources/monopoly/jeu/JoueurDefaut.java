@@ -24,7 +24,7 @@ public class JoueurDefaut
     private List<Propriete> titres;    // Les titres de propriétés du joueur
     private List<Evenement> cartes;    // Les cartes conservées par le joueur
     private Stack<Evenement> chosesAFaire;  // Les actions que le joueur doit exécuter
-    private static List<Joueur> adversaires = new ArrayList<Joueur>();  // La liste des joueurs, sauf soi-même et les éliminés
+    private static List<Joueur> joueurs = new ArrayList<Joueur>();  // La liste des joueurs, sauf soi-même et les éliminés
     
     
     
@@ -42,7 +42,7 @@ public class JoueurDefaut
         this.titres = new ArrayList<Propriete>();
         this.cartes = new ArrayList<Evenement>();
         
-        adversaires.add(this);
+        joueurs.add(this);
     }
     
     
@@ -74,6 +74,7 @@ public class JoueurDefaut
     
     public void eliminer()
     {
+		joueurs.remove(this);
         elimine = true;
     }
     
@@ -108,7 +109,9 @@ public class JoueurDefaut
     
     public List<Joueur> adversaires()
     {
-        return adversaires;
+		List<Joueur> adversaires = (ArrayList) joueurs.clone();
+		adversaires.remove(this);
+		return adversaires;
     }
     
     public List<Propriete> titres()
