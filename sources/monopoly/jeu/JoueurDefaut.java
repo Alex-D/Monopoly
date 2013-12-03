@@ -32,7 +32,7 @@ public class JoueurDefaut
       * Crée un joueur en fonction d'un numéro d'identification,
       * de son nom, ainsi que de sa case de départ.'
       */
-    public JoueurHumain(int numero, String nom, Case position)
+    public JoueurDefaut(int numero, String nom, Case position)
     {
         this.numero = numero;
         this.nom = nom;
