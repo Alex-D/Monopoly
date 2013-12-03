@@ -1,6 +1,7 @@
 package monopoly.jeu;
 
 import java.util.HashMap;
+
 import monopoly.proprietes.Propriete;
 import monopoly.evenements.Evenement;
 

@@ -62,9 +62,14 @@ public class JoueurDefaut
         return enPrison;
     }
     
-    public  void emprisonner()
+    public void emprisonner()
     {
         enPrison = true;
+    }
+    
+    public void liberer()
+    {
+        enPrison = false;
     }
     
     public boolean elimine()

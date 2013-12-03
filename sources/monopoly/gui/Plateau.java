@@ -1,6 +1,14 @@
 package monopoly.gui;
 
-public class Plateau
+
+
+/**
+ * Interface décrivant le plateau de jeu pour l'affichage
+ */
+public interface Plateau
 {
-    
+    /**
+     * Commence l'affichage graphique
+     */
+    public void afficher();
 }
