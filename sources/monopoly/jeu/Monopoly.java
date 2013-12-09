@@ -81,10 +81,17 @@ public class Monopoly
         return joueurs;
     }
     
+    public String toString()
+    {
+        return plateau.toString();
+    }
+    
     
     
     public static void main(String[] args)
     {
-        new Monopoly(2);
+        System.out.println("Monopoly !");
+        System.out.println("==========\n");
+        System.out.println(new Monopoly(2));
     }
 }
