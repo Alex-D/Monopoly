@@ -44,10 +44,15 @@ public class CaseDefaut implements Case
         return cases.get(numero);
     }
     
+    public int nombreCases()
+    {
+        return numeroMax;
+    }
+    
     /**
      * Retourne la case suivante
      */
-    public Case getSuivante()
+    public Case suivante()
     {
         return cases.get(numero < cases.size()
             ? cases.get(numero+1)
@@ -74,7 +79,7 @@ public class CaseDefaut implements Case
     
     public Iterator<Case> iterator()
     {
-        return CaseDefaut.cases.values().iterator();
+        return cases.values().iterator();
     }
     
     
