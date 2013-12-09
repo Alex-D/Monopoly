@@ -24,13 +24,14 @@ public class JoueurDefaut implements Joueur
     private List<Propriete> titres;    // Les titres de propriétés du joueur
     private List<Evenement> cartes;    // Les cartes conservées par le joueur
     private Stack<Evenement> chosesAFaire;  // Les actions que le joueur doit exécuter
+    
     private static List<Joueur> joueurs = new ArrayList<Joueur>();  // La liste des joueurs, sauf soi-même et les éliminés
     
     
     
     /**
       * Crée un joueur en fonction d'un numéro d'identification,
-      * de son nom, ainsi que de sa case de départ.'
+      * de son nom, ainsi que de sa case de départ.
       */
     public JoueurDefaut(int numero, String nom, Case position)
     {

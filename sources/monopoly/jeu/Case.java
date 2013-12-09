@@ -21,7 +21,7 @@ public interface Case extends Iterable<Case>
     Case get(int numero);
     
     /**
-     * Donne la case suivante
+     * Retourne la case suivante
      */
     Case suivante();
     

@@ -47,7 +47,7 @@ public interface Propriete
     /**
      * Le groupe auquel est rattachée la propriété
      */
-    Groupe groupe() ;
+    Groupe groupe();
     
     /**
      * Indique si la propriété est constructible

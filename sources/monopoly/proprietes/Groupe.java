@@ -2,6 +2,8 @@ package monopoly.proprietes;
 
 import java.util.List;
 
+
+
 /**
  * Cette interface décrit les fonctionnalités associées à un groupe
  * de propriétés
