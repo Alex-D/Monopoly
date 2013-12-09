@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import monopoly.gui.Plateau;
 import monopoly.gui.PlateauTexte;
 
+import tools.GestionnaireCSV;
+import tools.LigneCSV;
 
 
 /**
@@ -43,13 +45,18 @@ public class Monopoly
     /**
      * Construit les cases depuis le CSV
      */
-    // TODO: charger les cases depuis le CSV
     public void chargerCases()
     {
-        depart = new CaseDefaut(1, "Départ");
+        depart = null;
         
-        for(int i = 2; i <= 40; i+=2)
-            new CaseDefaut(i, "Case " + i);
+        ArrayList<LigneCSV> liste = GestionnaireCSV.chargerCSV("monopoly.csv");
+        
+        for(LigneCSV ligne : liste){
+            Case tmp = new CaseDefaut(ligne.getInt(0), ligne.getString(1));
+            
+            if(depart == null)
+                depart = tmp;
+        }
         
         CaseDefaut.completerCases();
     }
