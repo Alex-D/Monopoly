@@ -8,7 +8,7 @@ import monopoly.evenements.Evenement;
 /**
  * Cette interface décrit une case du plateau de jeu du Monopoly
  */
-public interface Case {
+public interface Case extends Iterable<Case> {
     /**
      * Numéro de la case
      */

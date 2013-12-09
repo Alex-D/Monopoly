@@ -1,6 +1,7 @@
 package monopoly.jeu;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 import monopoly.proprietes.Propriete;
 import monopoly.evenements.Evenement;
@@ -14,6 +15,7 @@ public class CaseDefaut implements Case
     private Propriete propriete; // Propriété éventuelle
     private Evenement evenement; // Evènement éventuel
     private static HashMap<Integer, Case> cases = new HashMap<Integer, Case>(); // Map des cases du plateau
+    private static int numeroMax;
     
     
     
@@ -25,6 +27,9 @@ public class CaseDefaut implements Case
         this.numero = numero;
         this.nom    = nom;
         cases.put(numero, this);
+        
+        if(numeroMax < numero)
+            numeroMax = numero;
     }
     
     
@@ -65,6 +70,20 @@ public class CaseDefaut implements Case
         return evenement;
     }
     
+    
+    
+    public Iterator<Case> iterator()
+    {
+        return CaseDefaut.cases.values().iterator();
+    }
+    
+    
+    public static void completerCases()
+    {
+        for(int i = 1; i < numeroMax; i++)
+            if(cases.get(i) == null)
+                new CaseDefaut(i, "Case manquante");
+    }
     
     
     public String toString()

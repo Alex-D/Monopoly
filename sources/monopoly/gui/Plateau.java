@@ -35,11 +35,10 @@ public abstract class Plateau
     public String toString()
     {
         String s = "";
-        Case c = monopoly.getDepart();
+        Case cases = monopoly.getDepart();
         
-        while(c != null){
-            c.getSuivante();
-        }
+        for(Case c : cases)
+            s += c + " ";
         
         return s;
     }
