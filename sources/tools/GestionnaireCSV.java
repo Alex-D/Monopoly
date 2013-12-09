@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class GestionnaireCSV
 {
 
-    private static ArrayList<LigneCSV> chargerCSV(String fichier)
+    public static ArrayList<LigneCSV> chargerCSV(String fichier)
     {
         BufferedReader br = null;
         ArrayList<LigneCSV> liste = new ArrayList<LigneCSV>();
@@ -18,15 +18,12 @@ public class GestionnaireCSV
  
 		try {
 			String ligneCourante;
-            
-            System.out.println( System.getProperty("user.dir") );
- 
+			
 			br = new BufferedReader(new FileReader( "config/"+fichier ));
 			br.readLine();
 			
 			while ((ligneCourante = br.readLine()) != null){
 			    ligneCourante = ligneCourante.replaceAll(";;", "; ;").replaceAll(";;", "; ;");
-			    System.out.println(ligneCourante);
 				String[] t = ligneCourante.split(";");
                 ligne = new LigneCSV();
 				for(String s : t)
@@ -45,14 +42,5 @@ public class GestionnaireCSV
 		}
 		
 		return liste;
-    }
-    
-    public static void main(String arg[])
-    {
-        ArrayList<LigneCSV> l = GestionnaireCSV.chargerCSV("monopoly.csv");
-        for(LigneCSV li : l)
-        {
-            System.out.println(li.getInt(0) + " : " + li.getString(1) + " : " + li.getString(2) + " : " + li.getString(3) + " : " + li.getString(4) + " : " + li.getString(5) + " : " + li.getString(6));
-        }
     }
 }
