@@ -37,8 +37,11 @@ public abstract class Plateau
         String s = "";
         Case cases = monopoly.getDepart();
         
-        for(Case c : cases)
-            s += c + " ";
+        for(Case c : cases){
+            s += "-- "+ c.numero() +" -------------\n" +
+                 "| " + c + "\n" +
+                 "------------------\n";
+        }
         
         return s;
     }

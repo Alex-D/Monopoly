@@ -8,7 +8,8 @@ import monopoly.evenements.Evenement;
 /**
  * Cette interface décrit une case du plateau de jeu du Monopoly
  */
-public interface Case extends Iterable<Case> {
+public interface Case extends Iterable<Case>
+{
     /**
      * Numéro de la case
      */
@@ -22,7 +23,12 @@ public interface Case extends Iterable<Case> {
     /**
      * Donne la case suivante
      */
-    Case getSuivante();
+    Case suivante();
+    
+    /**
+     * Donne le nombre de cases total
+     */
+    int nombreCases();
     
     /**
      * Intitulé de la case
