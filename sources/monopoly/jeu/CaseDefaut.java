@@ -39,6 +39,17 @@ public class CaseDefaut implements Case
         return cases.get(numero);
     }
     
+    /**
+     * Retourne la case suivante
+     */
+    public Case getSuivante()
+    {
+        return cases.get(numero < cases.size()
+            ? cases.get(numero+1)
+            : cases.get(1)
+        );
+    }
+    
     public String nom()
     {
         return nom;

@@ -13,7 +13,7 @@ import monopoly.evenements.Evenement;
   * Cette classe représente un joueur humain,
   * qui se contrôle manuellement donc ( entrée/sortie )
   */
-public class JoueurDefaut
+public class JoueurDefaut implements Joueur
 {
     private int numero;         // Numero du joueur
     private int especes;        // Espèces possédées par le joueur
@@ -34,13 +34,14 @@ public class JoueurDefaut
       */
     public JoueurDefaut(int numero, String nom, Case position)
     {
-        this.numero = numero;
-        this.nom = nom;
-        this.position = position;
-        this.somme = 20000;
-        this.enPrison = false;
-        this.titres = new ArrayList<Propriete>();
-        this.cartes = new ArrayList<Evenement>();
+        this.numero     = numero;
+        this.nom        = nom;
+        this.position   = position;
+        
+        especes         = 20000;
+        enPrison        = false;
+        titres          = new ArrayList<Propriete>();
+        cartes          = new ArrayList<Evenement>();
         
         joueurs.add(this);
     }
@@ -114,7 +115,7 @@ public class JoueurDefaut
     
     public List<Joueur> adversaires()
     {
-		List<Joueur> adversaires = (ArrayList) joueurs.clone();
+		List<Joueur> adversaires = new ArrayList<Joueur>(joueurs);
 		adversaires.remove(this);
 		return adversaires;
     }

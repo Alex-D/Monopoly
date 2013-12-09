@@ -20,6 +20,11 @@ public interface Case {
     Case get(int numero);
     
     /**
+     * Donne la case suivante
+     */
+    Case getSuivante();
+    
+    /**
      * Intitulé de la case
      */
     String nom();
