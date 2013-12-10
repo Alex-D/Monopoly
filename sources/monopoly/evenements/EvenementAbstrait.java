@@ -33,7 +33,7 @@ public abstract class EvenementAbstrait implements Evenement
     {
     	return cible;
     }
-
+    
     public void cibler(Joueur cible)
     {
         this.cible = cible;

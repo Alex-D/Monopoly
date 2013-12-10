@@ -20,7 +20,7 @@ public interface Evenement
      * Le joueur qui subit l'événement
      */
     Joueur cible();
-
+    
     /**
      * Cible un joueur
      */

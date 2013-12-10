@@ -4,6 +4,8 @@ import monopoly.jeu.Monopoly;
 import monopoly.jeu.Joueur;
 import monopoly.jeu.Case;
 
+import monopoly.evenements.Evenement;
+
 
 
 /**
@@ -26,5 +28,13 @@ public class PlateauTexte extends Plateau
     public void afficher()
     {
         System.out.println(toString());
+    }
+    
+    /**
+     * Propose de faire un choix entre les deux évènements, via le terminal
+     */
+    public static Evenement faireChoix(Evenement a, Evenement b)
+    {
+        return null;
     }
 }
