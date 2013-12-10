@@ -39,8 +39,8 @@ public abstract class Plateau
         
         for(Case c : cases){
             s += "-- "+ c.numero() +" -------------\n" +
-                 "| " + c + "\n" +
-                 "------------------\n";
+                 c + "\n" +
+                 "\n";
         }
         
         return s;

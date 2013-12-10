@@ -117,4 +117,11 @@ public class ProprieteDefaut implements Propriete
     {
         return niveauImmobilier;
     }
+
+
+
+    public String toString()
+    {
+        return ">>[Propriete] " + nom + " | prixAchat : " + prixAchat + " | loyer : " + loyer + "F";
+    }
 }

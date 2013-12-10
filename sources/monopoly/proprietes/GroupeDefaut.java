@@ -68,4 +68,11 @@ public class GroupeDefaut implements Groupe
         
         return true;
     }
+
+
+
+    public String toString()
+    {
+        return ">>[Groupe] " + nom + " | coût immo : " + coutImmo + "F";
+    }
 }

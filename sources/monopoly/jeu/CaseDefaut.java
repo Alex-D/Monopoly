@@ -78,11 +78,6 @@ public class CaseDefaut implements Case
         return evenement;
     }
     
-    public String toString()
-    {
-        return nom;
-    }
-    
     
     
     public Iterator<Case> iterator()
@@ -95,5 +90,20 @@ public class CaseDefaut implements Case
         for(int i = 1; i < numeroMax; i++)
             if(cases.get(i) == null)
                 new CaseDefaut(i, "Case manquante");
+    }
+
+
+    
+    public String toString()
+    {
+        String s = nom;
+
+        if(propriete != null)
+            s += "\n" + propriete;
+
+        if(evenement != null)
+            s += "\n" + evenement;
+
+        return s;
     }
 }
