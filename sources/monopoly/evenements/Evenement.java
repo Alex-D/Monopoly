@@ -24,5 +24,5 @@ public interface Evenement
     /**
      * Déclenche l'évènement
      */
-    void declencher(Joueur cible);
+    void executer();
 }
