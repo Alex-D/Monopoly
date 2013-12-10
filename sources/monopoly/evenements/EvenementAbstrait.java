@@ -1,18 +1,16 @@
 package monopoly.evenements;
 
 import monopoly.jeu.Joueur;
-import monopoly.jeu.Case;
 
 
 
 /**
- * Cette interface décrit les fonctionnalités associées aux
- * événements du jeu
+ * Implémentation abstraite des fonctions communes à tous les évènements
  */
 public abstract class EvenementAbstrait implements Evenement
 {
     private String nom;		// Nom de l'évènement
-    private Joueur cible;	// Cible (joueur) qui subit l'évènement
+    private Joueur cible;	// Cible - joueur - qui subit l'évènement
 
 
 

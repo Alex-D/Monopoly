@@ -1,7 +1,6 @@
 package monopoly.evenements;
 
 import monopoly.jeu.Joueur;
-import monopoly.jeu.Case;
 
 
 
@@ -25,5 +24,5 @@ public interface Evenement
     /**
      * Déclenche l'évènement
      */
-    void declencher();
+    void declencher(Joueur cible);
 }

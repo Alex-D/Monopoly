@@ -135,4 +135,9 @@ public class JoueurDefaut implements Joueur
     {
         return chosesAFaire;
     }
+
+    public boolean equals(Object o)
+    {
+        return (o == this || (o instanceof JoueurDefaut && numero == ((JoueurDefaut) o).numero()));
+    }
 }
