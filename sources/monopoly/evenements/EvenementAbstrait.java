@@ -39,8 +39,8 @@ public abstract class EvenementAbstrait implements Evenement
     /**
      * A surcharcher dans les enfants
      */
-    public void declencher(Joueur joueur)
+    public void declencher(Joueur cible)
     {
-    	this.joueur = joueur;
+    	this.cible = cible;
     }
 }
