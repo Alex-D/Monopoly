@@ -12,9 +12,9 @@ public class Carte extends EvenementAbstrait
     /**
      * Construit une carte évènementielle
      */
-    public Carte(String nom, Joueur cible)
+    public Carte(String nom)
     {
-        super(nom, cible);
+        super(nom);
     }
 
 

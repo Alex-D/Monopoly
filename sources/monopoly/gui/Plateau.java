@@ -3,6 +3,8 @@ package monopoly.gui;
 import monopoly.jeu.Monopoly;
 import monopoly.jeu.Case;
 
+import monopoly.evenements.Evenement;
+
 
 
 /**

@@ -17,10 +17,9 @@ public abstract class EvenementAbstrait implements Evenement
     /**
      * Construit un évènement nommé et ciblé
      */
-    public EvenementAbstrait(String nom, Joueur cible)
+    public EvenementAbstrait(String nom)
     {
     	this.nom = nom;
-        this.cible = cible;
     }
 
 
@@ -33,6 +32,11 @@ public abstract class EvenementAbstrait implements Evenement
     public Joueur cible()
     {
     	return cible;
+    }
+    
+    public void cibler(Joueur cible)
+    {
+        this.cible = cible;
     }
 
     public abstract void executer();

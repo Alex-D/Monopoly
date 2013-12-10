@@ -20,6 +20,11 @@ public interface Evenement
      * Le joueur qui subit l'événement
      */
     Joueur cible();
+    
+    /**
+     * Cible un joueur
+     */
+    void cibler(Joueur cible);
 
     /**
      * Déclenche l'évènement
