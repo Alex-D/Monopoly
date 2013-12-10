@@ -1,6 +1,7 @@
 package monopoly.proprietes;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -16,7 +17,7 @@ public class GroupeDefaut implements Groupe
 {
     private String nom;                     // Nom du groupe
     private int coutImmo;                   // Cout de l'immobilier pour les propriétés du groupe
-    private List<Propriete> composition;    // Liste des propriétés contenues dans le groupe
+    private List<Propriete> composition = new ArrayList<Propriete>(); // Liste des propriétés contenues dans le groupe
     
     private static Map<String, Groupe> groupes = new HashMap<String, Groupe>(); // Liste des groupes du jeu
     
