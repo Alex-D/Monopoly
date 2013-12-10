@@ -1,5 +1,11 @@
 package monopoly.evenements;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+
 import monopoly.jeu.Joueur;
 
 
@@ -9,21 +15,46 @@ import monopoly.jeu.Joueur;
  */
 public class Carte extends EvenementAbstrait
 {
+    private Evenement evenement;
+
+    private static Map<String, List<Carte>> tas = new HashMap<String, List<Carte>>();
+
+
+
     /**
-     * Construit une carte évènementielle
+     * Construit une carte évènementielle définie
      */
-    public Carte(String nom, Joueur cible)
+    public Carte(String nomTas, String nom, String evenement, String parametres)
     {
-        super(nom, cible);
+        super(nom);
+
+
+        // Défini les tas de cartes
+        if(tas.get(nomTas) == null)
+            tas.put(nomTas, new ArrayList<Carte>());
+
+        tas.get(nomTas).add(this);
+
+
+        // Défini l'évènement à déclencher à l'execution de la carte
+        this.evenement = MetaEvenement.creer(evenement, parametres);
     }
 
 
+
+    /**
+     * Retourne le tas au nom demandé
+     */
+    public static List<Carte> getTas(String nomTas)
+    {
+        return tas.get(nomTas);
+    }
 
     /**
      * Déclenche l'action de la carte sur le joueur
      */
     public void executer()
     {
-        // TODO: action de la carte
+        evenement.executer();
     }
 }

@@ -22,6 +22,11 @@ public interface Evenement
     Joueur cible();
 
     /**
+     * Cible un joueur
+     */
+    void cibler(Joueur cible);
+
+    /**
      * Déclenche l'évènement
      */
     void executer();
