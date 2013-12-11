@@ -11,7 +11,7 @@ public class Deplacement extends EvenementAbstrait
     
     
     /**
-     * Construis l'évènement Deplacement en fonction d'un nombre de cases
+     * Construit l'évènement Deplacement en fonction d'un nombre de cases
      */
     public Deplacement(int nbMouvements)
     {

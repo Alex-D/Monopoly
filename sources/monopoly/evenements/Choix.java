@@ -13,7 +13,7 @@ public class Choix extends EvenementAbstrait
     
     
     /**
-     * Construis l'évènement Choix entre deux évènements
+     * Construit l'évènement Choix entre deux évènements
      */
     public Choix(Evenement a, Evenement b)
     {
@@ -26,7 +26,7 @@ public class Choix extends EvenementAbstrait
     public Choix(String parametres)
     {
         super("Choix");
-        
+
         String[] choix = parametres.split(",");
         String[] choixA = choix[0].split(":");
         String[] choixB = choix[1].split(":");

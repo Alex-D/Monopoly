@@ -11,7 +11,7 @@ public class Depenser extends EvenementAbstrait
     
     
     /**
-     * Construis l'évènement Depenser en fonction d'une somme
+     * Construit l'évènement Depenser en fonction d'une somme
      */
     public Depenser(int somme)
     {

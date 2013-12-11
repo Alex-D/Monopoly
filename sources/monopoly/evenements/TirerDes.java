@@ -13,8 +13,7 @@ public class TirerDes extends EvenementAbstrait
     
     
     /**
-     * Construis l'évènement TirerDes en fonction de son nom,
-     * et de son Joueur cible
+     * Construit l'évènement TirerDes
      */
     public TirerDes()
     {

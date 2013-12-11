@@ -7,7 +7,7 @@ import monopoly.jeu.Joueur;
 public class Emprisonner extends EvenementAbstrait
 {
     /**
-     * Construis l'évènement Emprisonner
+     * Construit l'évènement Emprisonner
      */
     public Emprisonner()
     {

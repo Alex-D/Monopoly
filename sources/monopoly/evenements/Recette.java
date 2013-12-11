@@ -11,7 +11,7 @@ public class Recette extends EvenementAbstrait
 
 
     /**
-     * Construis l'évènement Recette en fonction d'une somme à ajouter
+     * Construit l'évènement Recette en fonction d'une somme à ajouter
      */
     public Recette(int somme)
     {

@@ -19,6 +19,9 @@ public class TirerCarte extends EvenementAbstrait
 
 
 
+    /**
+     * Construit l'évèment tirer une carte
+     */
     public TirerCarte(String nomTas)
     {
         super("Tirer carte " + nomTas);
