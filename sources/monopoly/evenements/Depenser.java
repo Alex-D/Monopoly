@@ -6,27 +6,32 @@ import monopoly.jeu.Joueur;
 
 public class Depenser extends EvenementAbstrait
 {
-    private int depense;    // Le dépense que le joueur doit effectuer
+    private int somme;    // Le dépense que le joueur doit effectuer
     
     
     
     /**
-     * Construis l'évènement Depenser, en fonction de son nom,
-     * de son Joueur cible, et d'une somme depense
+     * Construis l'évènement Depenser en fonction d'une somme
      */
-    public Depenser(String nom, int depense)
+    public Depenser(int somme)
     {
-        super(nom);
-        this.depense = depense;
+        super("Dépenser");
+
+        this.somme = somme;
+    }
+
+    public Depenser(String parametres)
+    {
+        this(Integer.parseInt(parametres));
     }
     
     
     
     /**
-     * Retire depense de la somme d'argent que possède le joueur
+     * Retire la somme d'argent au joueur
      */
     public void executer()
     {
-        cible().payer(depense);
+        cible().payer(somme);
     }
 }

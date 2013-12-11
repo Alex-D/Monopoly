@@ -16,9 +16,10 @@ public class TirerDes extends EvenementAbstrait
      * Construis l'évènement TirerDes en fonction de son nom,
      * et de son Joueur cible
      */
-    public TirerDes(String nom)
+    public TirerDes()
     {
-        super(nom);
+        super("Tirer dés");
+
         generator = new Random();
     }
     
@@ -38,12 +39,12 @@ public class TirerDes extends EvenementAbstrait
         if(cible().enPrison() &&  tir1 == tir2)
             cible().liberer();
         else if(!cible().enPrison()) {
-            Deplacement d = new Deplacement("Déplacement", tir1 + tir2 );
+            Deplacement d = new Deplacement(tir1 + tir2 );
             d.cibler(cible());
             cible().chosesAFaire().add(d);
             
             if(tir1 == tir2) {
-                 d = new Deplacement("Déplacement", (int) ( generator.nextFloat() * 6 ) + 1 );
+                 d = new Deplacement((int) (generator.nextFloat() * 6) + 1);
                  d.cibler(cible());
                  cible().chosesAFaire().add(d);
             }

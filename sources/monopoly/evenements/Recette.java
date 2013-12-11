@@ -6,27 +6,32 @@ import monopoly.jeu.Joueur;
 
 public class Recette extends EvenementAbstrait
 {
-    private int recette;   // Gain d'argent du joueur
+    private int somme;   // Gain d'argent du joueur
 
 
 
     /**
-     * Construis l'évènement Recette en fonction de son nom,
-     * de son Joueur cible, et d'une somme recette à ajouter au joueur
+     * Construis l'évènement Recette en fonction d'une somme à ajouter
      */
-    public Recette(String nom, int recette)
+    public Recette(int somme)
     {
-        super(nom);
-        this.recette = recette;
+        super("Recette");
+
+        this.somme = somme;
+    }
+
+    public Recette(String parameters)
+    {
+        this(Integer.parseInt(parameters));
     }
     
     
     
     /**
-     * Ajout recette à la somme d'argent du joueur
+     * Ajoute la somme d'argent au joueur
      */
     public void executer()
     {
-        cible().verser(recette);
+        cible().verser(somme);
     }
 }

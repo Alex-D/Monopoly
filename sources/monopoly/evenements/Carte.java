@@ -57,4 +57,11 @@ public class Carte extends EvenementAbstrait
     {
         evenement.executer();
     }
+
+
+
+    public String toString()
+    {
+        return super.toString() + " | Evenement : " + evenement;
+    }
 }

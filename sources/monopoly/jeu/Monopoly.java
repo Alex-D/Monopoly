@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import monopoly.gui.Plateau;
 import monopoly.gui.PlateauTexte;
+import monopoly.evenements.Carte;
 
 import tools.GestionnaireCSV;
 import tools.LigneCSV;
@@ -30,6 +31,9 @@ public class Monopoly
     {
         creerPlateau();
         chargerCases();
+
+        chargerCartes();
+
         creerJoueurs(nbJoueurs);
     }
     
@@ -60,6 +64,22 @@ public class Monopoly
         }
         
         CaseDefaut.completerCases();
+    }
+
+    /**
+     * Construit les tas de carte depuis le CSV
+     */
+    public void chargerCartes()
+    {
+        ArrayList<LigneCSV> liste = GestionnaireCSV.chargerCSV("cartes.csv");
+        
+        for(LigneCSV c : liste)
+            new Carte(c.getString(1), c.getString(2), c.getString(3), c.getString(4));
+
+        for(Carte c : Carte.getTas("chance"))
+            System.out.println(c);
+
+        System.out.println();
     }
     
     /**

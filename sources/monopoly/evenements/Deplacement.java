@@ -11,13 +11,17 @@ public class Deplacement extends EvenementAbstrait
     
     
     /**
-     * Construis l'évènement Deplacement en fonction de son nom,
-     * de son Joueur cible, et d'un nombre de mouvement
+     * Construis l'évènement Deplacement en fonction d'un nombre de cases
      */
-    public Deplacement(String nom, int nbMouvements)
+    public Deplacement(int nbMouvements)
     {
-        super(nom);
+        super("Déplacement");
         this.nbMouvements = nbMouvements;
+    }
+
+    public Deplacement(String parametres)
+    {
+        this(Integer.parseInt(parametres));
     }
     
     

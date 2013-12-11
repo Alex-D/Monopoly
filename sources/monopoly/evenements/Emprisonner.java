@@ -7,12 +7,11 @@ import monopoly.jeu.Joueur;
 public class Emprisonner extends EvenementAbstrait
 {
     /**
-     * Construis l'évènement Emprisonner en fonction de son nom,
-     * et de son Joueur cible
+     * Construis l'évènement Emprisonner
      */
-    public Emprisonner(String nom)
+    public Emprisonner()
     {
-        super(nom);
+        super("Emprisonner");
     }
     
     
