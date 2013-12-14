@@ -5,7 +5,6 @@ import java.util.List;
 import monopoly.jeu.Monopoly;
 import monopoly.jeu.Case;
 import monopoly.jeu.Joueur;
-
 import monopoly.evenements.Evenement;
 
 

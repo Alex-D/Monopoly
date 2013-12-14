@@ -1,8 +1,8 @@
 package monopoly.evenements;
 
-import monopoly.jeu.Joueur;
-
 import java.util.Random;
+
+import monopoly.jeu.Joueur;
 
 
 

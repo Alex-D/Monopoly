@@ -18,6 +18,9 @@ import tools.LigneCSV;
  */
 public class Monopoly
 {
+    private final static String MONOPOLY_CSV   = "monopoly.csv";
+    private final static String CARTES_CSV     = "cartes.csv";
+
     private Plateau plateau;
     private Case depart;
     private List<Joueur> joueurs;
@@ -54,7 +57,7 @@ public class Monopoly
     {
         depart = null;
         
-        ArrayList<LigneCSV> liste = GestionnaireCSV.chargerCSV("monopoly.csv");
+        ArrayList<LigneCSV> liste = GestionnaireCSV.chargerCSV(MONOPOLY_CSV);
         
         for(LigneCSV ligne : liste){
             Case tmp = new CaseDefaut(ligne.getInt(0), ligne.getString(1));
@@ -71,7 +74,7 @@ public class Monopoly
      */
     public void chargerCartes()
     {
-        ArrayList<LigneCSV> liste = GestionnaireCSV.chargerCSV("cartes.csv");
+        ArrayList<LigneCSV> liste = GestionnaireCSV.chargerCSV(CARTES_CSV);
         
         for(LigneCSV c : liste)
             new Carte(c.getString(1), c.getString(2), c.getString(3), c.getString(4));
@@ -118,5 +121,8 @@ public class Monopoly
         System.out.println("Monopoly !");
         System.out.println("==========\n");
         System.out.println(new Monopoly(2));
+
+        for(Carte c : Carte.getTas("CC"))
+            System.out.println(c);
     }
 }
