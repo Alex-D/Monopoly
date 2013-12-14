@@ -140,4 +140,9 @@ public class JoueurDefaut implements Joueur
     {
         return (o == this || (o instanceof JoueurDefaut && numero == ((JoueurDefaut) o).numero()));
     }
+
+    public String toString()
+    {
+        return nom + " (" + numero + ")";
+    }
 }

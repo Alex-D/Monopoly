@@ -1,7 +1,10 @@
 package monopoly.gui;
 
+import java.util.List;
+
 import monopoly.jeu.Monopoly;
 import monopoly.jeu.Case;
+import monopoly.jeu.Joueur;
 
 import monopoly.evenements.Evenement;
 
@@ -38,11 +41,17 @@ public abstract class Plateau
     {
         String s = "";
         Case cases = monopoly.getDepart();
+        List<Joueur> joueurs = monopoly.getJoueurs();
         
         for(Case c : cases){
             s += "-- "+ c.numero() +" -------------\n" +
-                 c + "\n" +
-                 "\n";
+                 c + "\n";
+
+            for(Joueur j : joueurs)
+                if(j.position() == c)
+                    s += "> " + j + "\n";
+
+            s += "\n";
         }
         
         return s;
