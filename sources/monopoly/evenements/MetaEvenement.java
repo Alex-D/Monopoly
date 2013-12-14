@@ -1,24 +1,25 @@
 package monopoly.evenements;
 
-import java.util.Arrays;
-
 
 
 /**
  * Enumération des évènements supportés
  */
 public enum MetaEvenement {
-    CHOIX       (new String[]{ "choix" }, "Choix"),
-    TIRERDES    (new String[]{ "tirer des" }, "TirerDes", false),
-    DEPENSER    (new String[]{ "dépense" }, "Depenser"),
-    EMPRISONNER (new String[]{ "prison" }, "Emprisonner", false),
-    RECETTE     (new String[]{ "recette" }, "Recette"),
-    DEPLACEMENT (new String[]{ "aller", "déplacement relatif" }, "Deplacement"),
-    CARTE       (new String[]{ "carte" }, "TirerCarte");
+    CHOIX               ("choix",               "Choix"),
+    TIRERDES            ("tirer des",           "TirerDes",     false),
+    EMPRISONNER         ("prison",              "Emprisonner",  false),
+    DEPENSER            ("dépense",             "Depenser"),
+    FRAISIMMO           ("frais immo",          "FraisImmo"),
+    RECETTE             ("recette",             "Recette"),
+    DEPLACEMENT         ("aller",               "Deplacement"),
+    REVENIR             ("revenir",             "Deplacement"),
+    DEPLACEMENTRELATIF  ("deplacement relatif", "DeplacementRelatif"),
+    CARTE               ("carte",               "TirerCarte");
 
 
 
-    public final String[] noms;                 // Liste des noms de l'évènement
+    public final String nom;                    // Nom de l'évènement
     public final String nomClasse;              // Nom de la classe à instancier
     public final boolean necessiteParametres;   // Si l'évènement a besoin de paramètre-s-
 
@@ -27,13 +28,13 @@ public enum MetaEvenement {
     /**
      * Définition de chaque évènement
      */
-    MetaEvenement(String[] noms, String nomClasse)
+    MetaEvenement(String nom, String nomClasse)
     {
-        this(noms, nomClasse, true);
+        this(nom, nomClasse, true);
     }
-    MetaEvenement(String[] noms, String nomClasse, boolean necessiteParametres)
+    MetaEvenement(String nom, String nomClasse, boolean necessiteParametres)
     {
-        this.noms = noms;
+        this.nom = nom;
         this.nomClasse = nomClasse;
         this.necessiteParametres = necessiteParametres;
     }
@@ -47,7 +48,7 @@ public enum MetaEvenement {
     {
         try {
             for(MetaEvenement e : MetaEvenement.values()){
-                if(Arrays.binarySearch(e.noms, evenement) >= 0){
+                if(e.nom.equals(evenement)){
                     Class evenementClass = Class.forName("monopoly.evenements." + e.nomClasse);
 
                     if(e.necessiteParametres)
