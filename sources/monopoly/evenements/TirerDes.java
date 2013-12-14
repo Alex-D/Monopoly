@@ -32,17 +32,17 @@ public class TirerDes extends EvenementAbstrait
      */
     public void executer()
     {
-        int tir1 = (int) ( generator.nextDouble() * 6 ) + 1;
-        int tir2 = (int) ( generator.nextDouble() * 6 ) + 1;
+        int tir1 = (int) (generator.nextDouble() * 6) + 1;
+        int tir2 = (int) (generator.nextDouble() * 6) + 1;
         
         if(cible().enPrison() &&  tir1 == tir2)
             cible().liberer();
-        else if(!cible().enPrison()) {
-            Deplacement d = new Deplacement(tir1 + tir2 );
+        else if(!cible().enPrison()){
+            Deplacement d = new Deplacement(tir1 + tir2);
             d.cibler(cible());
             cible().chosesAFaire().add(d);
             
-            if(tir1 == tir2) {
+            if(tir1 == tir2){
                  d = new Deplacement((int) (generator.nextFloat() * 6) + 1);
                  d.cibler(cible());
                  cible().chosesAFaire().add(d);

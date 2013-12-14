@@ -75,11 +75,6 @@ public class Monopoly
         
         for(LigneCSV c : liste)
             new Carte(c.getString(1), c.getString(2), c.getString(3), c.getString(4));
-
-        for(Carte c : Carte.getTas("chance"))
-            System.out.println(c);
-
-        System.out.println();
     }
     
     /**

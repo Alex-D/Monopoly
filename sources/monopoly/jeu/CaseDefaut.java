@@ -47,7 +47,7 @@ public class CaseDefaut implements Case
     
     public Case get(int numero)
     {
-        return cases.get( ( (numero + (cases.size() - 1) ) % 40 ) + 1 );
+        return cases.get((numero + cases.size() - 1) % 40 + 1);
     }
     
     public int nombreCases()
