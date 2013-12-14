@@ -21,6 +21,11 @@ public interface Case extends Iterable<Case>
     Case get(int numero);
     
     /**
+     * Donne la case associée de façon relative
+     */
+    Case getRelative(int nombre);
+    
+    /**
      * Retourne la case suivante
      */
     Case suivante();

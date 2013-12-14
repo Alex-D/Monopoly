@@ -6,17 +6,17 @@ import monopoly.jeu.Joueur;
 
 public class Deplacement extends EvenementAbstrait
 {
-    private int nbMouvements;   // Nombre de cases duquel la cible doit se déplacer
+    private int numeroCase;   // Numero de la case de destination
     
     
     
     /**
-     * Construit l'évènement Deplacement en fonction d'un nombre de cases
+     * Construit l'évènement Deplacement en fonction d'un numero de case
      */
-    public Deplacement(int nbMouvements)
+    public Deplacement(int numeroCase)
     {
         super("Déplacement");
-        this.nbMouvements = nbMouvements;
+        this.numeroCase = numeroCase;
     }
 
     public Deplacement(String parametres)
@@ -27,10 +27,10 @@ public class Deplacement extends EvenementAbstrait
     
     
     /**
-     * Déplacer le joueur cible sur la case se trouvant nbMouvements plus loin que la sienne
+     * Déplacer le joueur cible sur la case numeroCase
      */
     public void executer()
     {
-        cible().placerSur(cible().position().get(cible().position().numero() + nbMouvements));
+        cible().placerSur(numeroCase);
     }
 }

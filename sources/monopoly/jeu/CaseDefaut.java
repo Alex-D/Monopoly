@@ -49,6 +49,11 @@ public class CaseDefaut implements Case
     {
         return cases.get((numero + cases.size() - 1) % 40 + 1);
     }
+
+    public Case getRelative(int nombre)
+    {
+        return get(numero + nombre);
+    }
     
     public int nombreCases()
     {
