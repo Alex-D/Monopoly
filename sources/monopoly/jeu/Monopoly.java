@@ -122,7 +122,7 @@ public class Monopoly
         System.out.println("==========\n");
         System.out.println(new Monopoly(2));
 
-        for(Carte c : Carte.getTas("CC"))
+        for(Carte c : Carte.tas("CC"))
             System.out.println(c);
     }
 }

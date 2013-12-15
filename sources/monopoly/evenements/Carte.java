@@ -15,6 +15,7 @@ import monopoly.jeu.Joueur;
  */
 public class Carte extends EvenementAbstrait
 {
+    private String nomTas;
     private Evenement evenement;
 
     private static Map<String, List<Carte>> tas = new HashMap<String, List<Carte>>();
@@ -36,6 +37,8 @@ public class Carte extends EvenementAbstrait
         tas.get(nomTas).add(this);
 
 
+        // Stock dans la carte son tas d'appartenance
+        this.nomTas = nomTas;
         // Défini l'évènement à déclencher à l'execution de la carte
         this.evenement = MetaEvenement.creer(evenement, parametres);
     }
@@ -45,7 +48,7 @@ public class Carte extends EvenementAbstrait
     /**
      * Retourne le tas au nom demandé
      */
-    public static List<Carte> getTas(String nomTas)
+    public static List<Carte> tas(String nomTas)
     {
         return tas.get(nomTas);
     }
@@ -55,6 +58,7 @@ public class Carte extends EvenementAbstrait
      */
     public void executer()
     {
+        evenement.cibler(cible());
         evenement.executer();
     }
 
@@ -62,6 +66,6 @@ public class Carte extends EvenementAbstrait
 
     public String toString()
     {
-        return super.toString() + " | Evenement : " + evenement;
+        return super.toString() + "\n\tEvenement : " + evenement;
     }
 }

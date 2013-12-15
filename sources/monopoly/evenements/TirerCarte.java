@@ -26,7 +26,7 @@ public class TirerCarte extends EvenementAbstrait
     {
         super("Tirer carte " + nomTas);
 
-        List<Carte> tas = Carte.getTas(nomTas);
+        List<Carte> tas = Carte.tas(nomTas);
         Collections.shuffle(tas);
         this.carte = tas.get(0);
     }
