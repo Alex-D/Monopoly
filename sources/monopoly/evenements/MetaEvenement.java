@@ -7,6 +7,7 @@ package monopoly.evenements;
  */
 public enum MetaEvenement {
     CHOIX               ("choix",               "Choix"),
+    CADEAU              ("cadeau",              "Cadeau"),
     TIRERDES            ("tirer des",           "TirerDes",     false),
     EMPRISONNER         ("prison",              "Emprisonner",  false),
     DEPENSER            ("dépense",             "Depenser"),
