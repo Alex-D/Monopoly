@@ -32,4 +32,4 @@ Projet en cours de développement, à but pédagogique dans le cadre de la forma
 ## À Propos
 
 Alex-D / Alexandre Demode
-Zeifrost / Damien Deconinck
+Zelfrost / Damien Deconinck
