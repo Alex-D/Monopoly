@@ -16,25 +16,32 @@ public class ProprieteDefaut implements Propriete
     private boolean hypotheque;     // Décrit si la propriété est hypothéquée ou non
     private int prixAchat;          // Prix d'achat de la propriété
     private Groupe groupe;          // Groupe d'appartenance de la propriété
-    private boolean constructible;  // Décrit sur la propriete est constructible
+    private boolean constructible;  // Décrit si la propriete est constructible
     private Joueur proprietaire;    // Propriétaire de la propriété
-    private int loyer;              // Loyer à payer au propriétaire
+    private int[] loyer;            // Loyer à payer au propriétaire
     private int niveauImmobilier;   // Niveau de construction de 1 à 5
     
     
     
     /**
-     * Défini une propriété selon sa position, prixAchat, loyer et son nom
+     * Défini une propriété selon sa position, son prix d'achat, son loyer, de son nom et de sa constructabilite
      */
-    public ProprieteDefaut(Case position, int prixAchat, int loyer, String nom)
+    public ProprieteDefaut(Case position, int prixAchat, String[] loyer, String nom, Groupe groupe, boolean constructible)
     {
-        this.position = position;
-        this.prixAchat = prixAchat;
-        this.loyer = loyer;
-        this.nom = nom;
+        this.position       = position;
+        this.prixAchat      = prixAchat;
+        this.loyer          = new int[loyer.length];
+
+        for (int i=0; i < loyer.length; i++)
+            this.loyer[i] = Integer.parseInt(loyer[i]);
+
+        this.nom            = nom;
+        this.groupe         = groupe;
+        this.constructible  = constructible;
         
-        hypotheque = false;
-        niveauImmobilier = 0;
+        hypotheque          = false;
+        niveauImmobilier    = 0;
+        proprietaire        = null;
     }
     
     
@@ -47,6 +54,11 @@ public class ProprieteDefaut implements Propriete
     public String nom()
     {
         return nom;
+    }
+    
+    public void setNom(String nom)
+    {
+        this.nom = nom;
     }
     
     public boolean hypotheque()
@@ -110,7 +122,7 @@ public class ProprieteDefaut implements Propriete
     
     public int loyer()
     {
-        return loyer;
+        return loyer[niveauImmobilier];
     }
     
     public int niveauImmobilier()
@@ -122,6 +134,14 @@ public class ProprieteDefaut implements Propriete
 
     public String toString()
     {
-        return ">>[Propriete] " + nom + " | prixAchat : " + prixAchat + " | loyer : " + loyer + "F";
+        String groupe = "";
+
+        if (this.groupe != null)
+            groupe = " | groupe : " + this.groupe;
+            
+        return (proprietaire == null)
+            ? ">>[Propriete] " + nom + groupe + " | prix d'achat : " + prixAchat
+            : ">>[Propriete] " + nom + groupe + " | loyer : " + loyer + " | proprietaire : " + proprietaire
+        ;
     }
 }

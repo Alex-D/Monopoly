@@ -1,6 +1,7 @@
 package monopoly.evenements;
 
 import monopoly.jeu.Joueur;
+import monopoly.jeu.CaseDefaut;
 
 
 
@@ -22,5 +23,6 @@ public class Emprisonner extends EvenementAbstrait
     public void executer()
     {
         cible().emprisonner();
+        cible().placerSur( CaseDefaut.prison() );
     }
 }

@@ -1,11 +1,13 @@
 package monopoly.evenements;
 
 import monopoly.jeu.Joueur;
-
 import monopoly.gui.PlateauTexte;
 
 
 
+/**
+ * Evénement qui propose un choix entre deux autres événements
+ */
 public class Choix extends EvenementAbstrait
 {
     private Evenement a, b; // Les deux choix
@@ -13,7 +15,7 @@ public class Choix extends EvenementAbstrait
     
     
     /**
-     * Construit l'évènement Choix entre deux évènements
+     * Construit l'événement Choix entre deux évènements
      */
     public Choix(Evenement a, Evenement b)
     {
@@ -38,7 +40,7 @@ public class Choix extends EvenementAbstrait
      
      
     /**
-     * Offre le choix au joueur entre les deux évènements,
+     * Offre le choix au joueur entre les deux événements,
      * et ajoute celui choisi à sa pile
      */
     public void executer()

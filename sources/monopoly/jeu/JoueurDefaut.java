@@ -21,8 +21,8 @@ public class JoueurDefaut implements Joueur
     private Case position;      // Case sur laquelle se situe le joueur
     private boolean enPrison;   // Vrai si le joueur est en prison, faux sinon
     private boolean elimine;    // Vrai si le joueur est éliminé, faux sinon
-    private List<Propriete> titres;    // Les titres de propriétés du joueur
-    private List<Evenement> cartes;    // Les cartes conservées par le joueur
+    private List<Propriete> titres;         // Les titres de propriétés du joueur
+    private List<Evenement> cartes;         // Les cartes conservées par le joueur
     private Stack<Evenement> chosesAFaire;  // Les actions que le joueur doit exécuter
     
     private static List<Joueur> joueurs = new ArrayList<Joueur>();  // La liste des joueurs, sauf soi-même et les éliminés
@@ -43,6 +43,7 @@ public class JoueurDefaut implements Joueur
         enPrison        = false;
         titres          = new ArrayList<Propriete>();
         cartes          = new ArrayList<Evenement>();
+        chosesAFaire    = new Stack<Evenement>();
         
         joueurs.add(this);
     }
@@ -92,10 +93,11 @@ public class JoueurDefaut implements Joueur
     
     public boolean payer(int somme)
     {
-        if(especes > somme){
+        if (especes > somme) {
             especes -= somme;
             return true;
         }
+
         return false;
     }
     
@@ -112,6 +114,11 @@ public class JoueurDefaut implements Joueur
     public void placerSur(Case c)
     {
         position = c;
+        if (c.evenement() != null) {
+            Evenement e = c.evenement();
+            e.cibler(this);
+            chosesAFaire.add(e);
+        }
     }
     
     public List<Joueur> adversaires()
@@ -136,10 +143,14 @@ public class JoueurDefaut implements Joueur
         return chosesAFaire;
     }
 
+    
+
     public boolean equals(Object o)
     {
         return (o == this || (o instanceof JoueurDefaut && numero == ((JoueurDefaut) o).numero()));
     }
+
+
 
     public String toString()
     {

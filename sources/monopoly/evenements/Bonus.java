@@ -3,6 +3,7 @@ package monopoly.evenements;
 import monopoly.jeu.Joueur;
 
 
+
 /**
  * TODO: Un bonus est gardé en main jusqu'à ce qu'il puisse être executé
  */

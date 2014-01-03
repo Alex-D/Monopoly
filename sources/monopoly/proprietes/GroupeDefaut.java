@@ -15,11 +15,11 @@ import monopoly.jeu.Case;
  */
 public class GroupeDefaut implements Groupe
 {
-    private String nom;                     // Nom du groupe
-    private int coutImmo;                   // Cout de l'immobilier pour les propriétés du groupe
-    private List<Propriete> composition = new ArrayList<Propriete>(); // Liste des propriétés contenues dans le groupe
+    private String nom;     // Nom du groupe
+    private int coutImmo;   // Cout de l'immobilier pour les propriétés du groupe
+    private List<Propriete> composition         = new ArrayList<Propriete>();       // Liste des propriétés contenues dans le groupe
     
-    private static Map<String, Groupe> groupes = new HashMap<String, Groupe>(); // Liste des groupes du jeu
+    private static Map<String, Groupe> groupes  = new HashMap<String, Groupe>();    // Liste des groupes du jeu
     
     
     
@@ -60,19 +60,24 @@ public class GroupeDefaut implements Groupe
     {
         Joueur j = null;
         
-        for(Propriete p : composition)
-            if(j == null)
+        for (Propriete p : composition)
+            if (j == null)
                 j = p.proprietaire();
-            else if(!p.proprietaire().equals(j))
+            else if (!p.proprietaire().equals(j))
                 return false;
         
         return true;
+    }
+    
+    public static Map<String, Groupe> groupes()
+    {
+        return groupes;
     }
 
 
 
     public String toString()
     {
-        return ">>[Groupe] " + nom + " | coût immo : " + coutImmo + "F";
+        return "groupe " + nom + " | coût immo : " + coutImmo + "F";
     }
 }

@@ -2,6 +2,11 @@ package tools;
 
 import java.util.ArrayList;
 
+
+
+/**
+ * Permet de manipuler une ligne d'un CSV
+ */
 public class LigneCSV
 {
     private ArrayList<String> ligne;

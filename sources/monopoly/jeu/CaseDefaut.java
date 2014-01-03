@@ -34,8 +34,10 @@ public class CaseDefaut implements Case
         
         cases.put(numero, this);
         
-        if(numeroMax < numero)
+        if (numeroMax < numero)
             numeroMax = numero;
+        
+        this.evenement = null;
     }
     
     
@@ -62,9 +64,10 @@ public class CaseDefaut implements Case
       
     public Case suivante()
     {
-        return cases.get(numero < cases.size()
-            ? cases.get(numero+1)
-            : cases.get(1)
+        return cases.get(
+            numero < cases.size()
+                ? cases.get(numero+1)
+                : cases.get(1)
         );
     }
     
@@ -83,7 +86,15 @@ public class CaseDefaut implements Case
         return evenement;
     }
     
+    public void declenche(Evenement evenement)
+    {
+        this.evenement = evenement;
+    }
     
+    public void possede(Propriete propriete)
+    {
+        this.propriete = propriete;
+    }
     
     public Iterator<Case> iterator()
     {
@@ -92,9 +103,24 @@ public class CaseDefaut implements Case
     
     public static void completerCases()
     {
-        for(int i = 1; i < numeroMax; i++)
-            if(cases.get(i) == null)
+        for (int i = 1; i < numeroMax; i++)
+            if (cases.get(i) == null)
                 new CaseDefaut(i, "Case manquante");
+    }
+    
+    public static Case prison()
+    {
+        Case tmp;
+        Iterator it = cases.values().iterator();
+        
+        while (it.hasNext()) {
+            tmp = (Case) it.next();
+             
+            if (tmp.nom().equals("Prison"))
+                return tmp;
+        }
+
+        return null;
     }
 
 
@@ -103,10 +129,10 @@ public class CaseDefaut implements Case
     {
         String s = nom;
 
-        if(propriete != null)
+        if (propriete != null)
             s += "\n" + propriete;
 
-        if(evenement != null)
+        if (evenement != null)
             s += "\n" + evenement;
 
         return s;

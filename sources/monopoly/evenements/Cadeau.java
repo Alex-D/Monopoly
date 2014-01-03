@@ -4,6 +4,9 @@ import monopoly.jeu.Joueur;
 
 
 
+/**
+ * Tous les adversaires d'un joueur lui donnent une somme donnée
+ */
 public class Cadeau extends EvenementAbstrait
 {
     private int somme;    // Le montant du cadeau

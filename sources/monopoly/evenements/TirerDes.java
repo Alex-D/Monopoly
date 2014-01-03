@@ -6,20 +6,22 @@ import monopoly.jeu.Joueur;
 
 
 
+/**
+ * Lace un dé 6 face au hasard
+ */
 public class TirerDes extends EvenementAbstrait
 {
-    private Random generator;   // Generateur de jet de dés
+    private static Random generator = new Random();   // Generateur de jet de dés
     
     
     
     /**
      * Construit l'évènement TirerDes
      */
-    public TirerDes()
+    public TirerDes(Joueur j)
     {
         super("Tirer dés");
-
-        generator = new Random();
+        cibler(j);
     }
     
     
@@ -35,17 +37,22 @@ public class TirerDes extends EvenementAbstrait
         int tir1 = (int) (generator.nextDouble() * 6) + 1;
         int tir2 = (int) (generator.nextDouble() * 6) + 1;
         
-        if(cible().enPrison() &&  tir1 == tir2)
+        if (cible().enPrison() && tir1 == tir2)
             cible().liberer();
-        else if(!cible().enPrison()){
-            Deplacement d = new Deplacement(tir1 + tir2);
+        else if (!cible().enPrison()){
+            System.out.println("Vous avez fait " + tir1 + " et " + tir2 + ".");
+
+            DeplacementRelatif d = new DeplacementRelatif(tir1 + tir2);
             d.cibler(cible());
             cible().chosesAFaire().add(d);
             
-            if(tir1 == tir2){
-                 d = new Deplacement((int) (generator.nextFloat() * 6) + 1);
-                 d.cibler(cible());
-                 cible().chosesAFaire().add(d);
+            if (tir1 == tir2) {
+                tir1 = (int) (generator.nextFloat() * 6) + 1;
+                System.out.println("Double ! Vous avancez de " + tir1 + " cases en plus.");
+
+                d = new DeplacementRelatif(tir1);
+                d.cibler(cible());
+                cible().chosesAFaire().add(d);
             }
         }
     }

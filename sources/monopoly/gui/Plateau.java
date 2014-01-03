@@ -33,21 +33,24 @@ public abstract class Plateau
      */
     public abstract void afficher();
     
+
+    
     /**
      * Affiche le plateau en texte
      */
     public String toString()
     {
-        String s = "";
-        Case cases = monopoly.getDepart();
-        List<Joueur> joueurs = monopoly.getJoueurs();
+        String s                = "";
+        Case cases              = monopoly.getDepart();
+        List<Joueur> joueurs    = monopoly.getJoueurs();
         
-        for(Case c : cases){
-            s += "-- "+ c.numero() +" -------------\n" +
-                 c + "\n";
+        for (Case c : cases) {
+            s += "-- "+ c.numero() +" -------------\n"
+               + c + "\n"
+            ;
 
-            for(Joueur j : joueurs)
-                if(j.position() == c)
+            for (Joueur j : joueurs)
+                if (j.position() == c)
                     s += "> " + j + "\n";
 
             s += "\n";
