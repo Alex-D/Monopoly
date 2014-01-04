@@ -47,8 +47,14 @@ public interface Case extends Iterable<Case>
     Propriete propriete();
     
     /**
-     * Événément susceptible de se déclencher à l'arrivée sur cette
+     * Événement susceptible de se déclencher à l'arrivée sur cette
      * case (éventuellement <code>null</code>)
      */
     Evenement evenement();
+
+    /**
+     * Défini l'événement susceptible de se déclencher à l'arrivée 
+     * sur cette case
+     */
+    void declenche(Evenement evenement);
 }

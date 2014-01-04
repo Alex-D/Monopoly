@@ -176,10 +176,9 @@ public class Monopoly
     public static void main(String[] args)
     {
         Monopoly m = new Monopoly(2);
-        Fenetre f = new Fenetre(m);
+        PlateauGraphique f = new PlateauGraphique(m);
         
         /*
-        Monopoly m = new Monopoly(2);
         Scanner sc = new Scanner(System.in);
         
         System.out.println("Monopoly !");
