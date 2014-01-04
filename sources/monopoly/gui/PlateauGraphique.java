@@ -26,8 +26,8 @@ public class PlateauGraphique extends JFrame
     {
         this.m      = m;
         
-        largeur     = 600;
-        hauteur     = 600;
+        largeur     = 800;
+        hauteur     = 800;
         
         initialiser();
         

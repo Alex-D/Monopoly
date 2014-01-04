@@ -60,7 +60,7 @@ public class CaseGraphique extends JPanel
     private boolean last;
     private Case c;
 
-    private final Font font = new Font("Arial", Font.PLAIN, 11);
+    private final Font font = new Font("Arial", Font.PLAIN, 9);
     
     
     
@@ -136,10 +136,31 @@ public class CaseGraphique extends JPanel
         // Textes
         g.setFont(font);
 
+        String l2 = c.nom()
+            .replace("Rue ", "")
+            .replace("Gare ", "")
+            .replace("Avenue ", "")
+            .replace("Place ", "")
+            .replace("Faubourg ", "")
+            .replace("Boulevard ", "")
+            .replace("Caisse ", "")
+            .replace("des ", "")
+            .replace("de ", "")
+            .replace("la ", "")
+            .replace("Impôts sur ", "")
+            .trim()
+        ;
+        String l1 = c.nom().replace(l2, "").trim();
+
         g.drawString(
-            c.nom(),
-            largeur/2 - (getFontMetrics(font).stringWidth(c.nom())/2),
+            l1,
+            largeur/2 - (getFontMetrics(font).stringWidth(l1)/2),
             35
+        );
+        g.drawString(
+            l2,
+            largeur/2 - (getFontMetrics(font).stringWidth(l2)/2),
+            50
         );
 
         if (c.propriete() != null) {
@@ -148,7 +169,7 @@ public class CaseGraphique extends JPanel
             g.drawString(
                 prix,
                 largeur/2 - (getFontMetrics(font).stringWidth(prix)/2),
-                70
+                hauteur - 10
             );
         }
     }
