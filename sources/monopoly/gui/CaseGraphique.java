@@ -136,8 +136,6 @@ public class CaseGraphique extends JPanel
         // Textes
         g.setFont(font);
 
-        System.out.println(c.nom());
-
         g.drawString(
             c.nom(),
             largeur/2 - (getFontMetrics(font).stringWidth(c.nom())/2),
