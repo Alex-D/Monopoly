@@ -136,7 +136,7 @@ public class CaseGraphique extends JPanel
         // Textes
         g.setFont(font);
 
-        String l2 = c.nom()
+        String l23 = c.nom()
             .replace("Rue ", "")
             .replace("Gare ", "")
             .replace("Avenue ", "")
@@ -144,13 +144,21 @@ public class CaseGraphique extends JPanel
             .replace("Faubourg ", "")
             .replace("Boulevard ", "")
             .replace("Caisse ", "")
-            .replace("des ", "")
+            .replace("Compagnie ", "")
+            .replace("des C", "C")
             .replace("de ", "")
             .replace("la ", "")
             .replace("Impôts sur ", "")
             .trim()
         ;
-        String l1 = c.nom().replace(l2, "").trim();
+        String l1 = c.nom().replace(l23, "").trim();
+        String l2 = l23
+            .replace("des Eaux", "")
+            .replace("d'électricité", "")
+            .replace("Elysées", "")
+            .trim()
+        ;
+        String l3 = l23.replace(l2, "").trim();
 
         g.drawString(
             l1,
@@ -160,7 +168,12 @@ public class CaseGraphique extends JPanel
         g.drawString(
             l2,
             largeur/2 - (getFontMetrics(font).stringWidth(l2)/2),
-            50
+            47
+        );
+        g.drawString(
+            l3,
+            largeur/2 - (getFontMetrics(font).stringWidth(l3)/2),
+            60
         );
 
         if (c.propriete() != null) {
