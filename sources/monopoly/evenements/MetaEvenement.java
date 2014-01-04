@@ -48,11 +48,11 @@ public enum MetaEvenement {
     public static Evenement creer(String evenement, String parametres)
     {
         try {
-            for(MetaEvenement e : MetaEvenement.values()){
-                if(e.nom.equals(evenement)){
+            for (MetaEvenement e : MetaEvenement.values()) {
+                if (e.nom.equals(evenement)) {
                     Class evenementClass = Class.forName("monopoly.evenements." + e.nomClasse);
 
-                    if(e.necessiteParametres)
+                    if (e.necessiteParametres)
                         return (Evenement) evenementClass.getDeclaredConstructor(String.class).newInstance(parametres);
                     else
                         return (Evenement) evenementClass.newInstance();
