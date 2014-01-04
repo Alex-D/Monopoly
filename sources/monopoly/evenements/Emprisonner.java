@@ -23,6 +23,8 @@ public class Emprisonner extends EvenementAbstrait
     public void executer()
     {
         cible().emprisonner();
-        cible().placerSur( CaseDefaut.prison() );
+        Evenement d = new Deplacement( CaseDefaut.prison().numero() );
+        d.cibler( cible() );
+        cible().chosesAFaire().add( d );
     }
 }

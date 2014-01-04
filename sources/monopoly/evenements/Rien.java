@@ -8,6 +8,7 @@ public class Rien extends EvenementAbstrait
 {
     
     
+    
     /**
      * Construit un évènement consistant à ne rien faire
      */
@@ -16,7 +17,11 @@ public class Rien extends EvenementAbstrait
         super("ne rien faire");
     }
     
+    
+    
     public void executer() {}
+    
+    
     
     public String toString()
     {

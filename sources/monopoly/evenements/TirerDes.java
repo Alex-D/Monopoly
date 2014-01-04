@@ -37,23 +37,21 @@ public class TirerDes extends EvenementAbstrait
         int tir1 = (int) (generator.nextDouble() * 6) + 1;
         int tir2 = (int) (generator.nextDouble() * 6) + 1;
         
-        if (cible().enPrison() && tir1 == tir2)
+        if( cible().enPrison() &&  tir1 == tir2 ) {
             cible().liberer();
-        else if (!cible().enPrison()){
+            System.out.println("Vous êtes libéré !");
+        } else if( !cible().enPrison() ) {
             System.out.println("Vous avez fait " + tir1 + " et " + tir2 + ".");
-
             DeplacementRelatif d = new DeplacementRelatif(tir1 + tir2);
             d.cibler(cible());
-            cible().chosesAFaire().add(d);
             
-            if (tir1 == tir2) {
+            if(tir1 == tir2){
                 tir1 = (int) (generator.nextFloat() * 6) + 1;
                 System.out.println("Double ! Vous avancez de " + tir1 + " cases en plus.");
-
-                d = new DeplacementRelatif(tir1);
-                d.cibler(cible());
-                cible().chosesAFaire().add(d);
+                DeplacementRelatif d2 = new DeplacementRelatif(tir1);
+                cible().chosesAFaire().add( d2 );
             }
+            cible().chosesAFaire().add( d );
         }
     }
 }

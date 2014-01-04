@@ -66,8 +66,8 @@ public class CaseDefaut implements Case
     {
         return cases.get(
             numero < cases.size()
-                ? cases.get(numero+1)
-                : cases.get(1)
+                ? numero+1
+                : 1
         );
     }
     

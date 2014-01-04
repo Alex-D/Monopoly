@@ -1,6 +1,7 @@
 package monopoly.evenements;
 
 import monopoly.jeu.Case;
+import monopoly.jeu.CaseDefaut;
 import monopoly.proprietes.ProprieteDefaut;
 
 
@@ -40,6 +41,7 @@ public class Achat extends EvenementAbstrait
                 "Possédée par " + c.propriete().proprietaire()
             ))
         ;
+        ((CaseDefaut) c).declenche( new PayerImpot( cible(), c.propriete().loyer() ) );
     }
     
 
