@@ -1,7 +1,8 @@
 package tools;
  
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -22,7 +23,12 @@ public class GestionnaireCSV
 		try {
 			String ligneCourante;
 			
-			br = new BufferedReader(new FileReader("config/" + fichier));
+			br = new BufferedReader(
+				new InputStreamReader(
+					new FileInputStream("config/" + fichier),
+					"UTF8"
+				)
+			);
 			br.readLine();
 			
 			while ((ligneCourante = br.readLine()) != null) {

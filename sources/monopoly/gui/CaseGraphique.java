@@ -2,10 +2,11 @@ package monopoly.gui;
 
 import javax.swing.JPanel;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Dimension;
-import java.awt.Color;
 
 import java.util.HashMap;
 
@@ -57,6 +58,9 @@ public class CaseGraphique extends JPanel
                 rotation;
     private Color couleurGroupe;
     private boolean last;
+    private Case c;
+
+    private final Font font = new Font("Arial", Font.PLAIN, 11);
     
     
     
@@ -64,6 +68,7 @@ public class CaseGraphique extends JPanel
     {
         this.largeur    = largeur;
         this.hauteur    = hauteur;
+        this.c          = c;
         this.rotation   = rotation;
         this.last       = false;
         
@@ -125,5 +130,28 @@ public class CaseGraphique extends JPanel
         // Bord supérieur de la case
         if (!last)
             g.fillRect(0, 0, largeur, 3);
+
+
+
+        // Textes
+        g.setFont(font);
+
+        System.out.println(c.nom());
+
+        g.drawString(
+            c.nom(),
+            largeur/2 - (getFontMetrics(font).stringWidth(c.nom())/2),
+            35
+        );
+
+        if (c.propriete() != null) {
+            String prix = "F " + c.propriete().prixAchat();
+
+            g.drawString(
+                prix,
+                largeur/2 - (getFontMetrics(font).stringWidth(prix)/2),
+                70
+            );
+        }
     }
 }

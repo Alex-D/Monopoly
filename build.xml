@@ -11,7 +11,7 @@
     </target>
 
     <target name="compile" depends="clean">
-	    <javac srcdir="sources" destdir="classes"/>
+	    <javac srcdir="sources" destdir="classes" encoding="utf8"/>
     </target>
 
     <target name="jar" depends="compile">
