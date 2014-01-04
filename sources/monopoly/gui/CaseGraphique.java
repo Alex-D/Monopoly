@@ -62,8 +62,6 @@ public class CaseGraphique extends JPanel
     
     public CaseGraphique(int largeur, int hauteur, Case c, int rotation)
     {
-        creerCouleur();
-        
         this.largeur    = largeur;
         this.hauteur    = hauteur;
         this.rotation   = rotation;
@@ -86,10 +84,6 @@ public class CaseGraphique extends JPanel
     public void setLast()
     {
         last = true;
-    }
-    
-    public void creerCouleur()
-    {
     }
     
     public void paintComponent(Graphics g)
