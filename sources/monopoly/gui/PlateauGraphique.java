@@ -41,7 +41,7 @@ public class PlateauGraphique extends JFrame
     
     public void initialiser()
     {
-        setTitle("Monopoly !!");
+        setTitle("MONOPOLY");
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(new Color(182, 211, 189));
