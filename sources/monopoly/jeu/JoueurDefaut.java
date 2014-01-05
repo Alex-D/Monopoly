@@ -89,8 +89,6 @@ public class JoueurDefaut extends Observable implements Joueur
                 e.executer();
             }
         }
-        setChanged();
-        notifyObservers("finTour");
     }
     
     public boolean enPrison()
