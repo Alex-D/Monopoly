@@ -1,11 +1,18 @@
 package monopoly.jeu;
 
+import monopoly.proprietes.Propriete;
+
+import monopoly.evenements.Evenement;
+import monopoly.evenements.TirerDes;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.Observable;
 
-import monopoly.proprietes.Propriete;
-import monopoly.evenements.Evenement;
+import java.awt.Color;
+
+import java.util.Random;
 
 
 
@@ -13,12 +20,13 @@ import monopoly.evenements.Evenement;
   * Cette classe représente un joueur humain,
   * qui se contrôle manuellement donc ( entrée/sortie )
   */
-public class JoueurDefaut implements Joueur
+public class JoueurDefaut extends Observable implements Joueur
 {
     private int numero;         // Numero du joueur
     private int especes;        // Espèces possédées par le joueur
     private String nom;         // Nom du joueur
     private Case position;      // Case sur laquelle se situe le joueur
+    private Color c;
     private boolean enPrison;   // Vrai si le joueur est en prison, faux sinon
     private boolean elimine;    // Vrai si le joueur est éliminé, faux sinon
     private List<Propriete> titres;         // Les titres de propriétés du joueur
@@ -39,6 +47,12 @@ public class JoueurDefaut implements Joueur
         this.nom        = nom;
         this.position   = position;
         
+        Random g = new Random();
+        int red     =   (int)(g.nextFloat()*256),
+            green   =   (int)(g.nextFloat()*256),
+            blue    =   (int)(g.nextFloat()*256);
+        c = new Color(red, green, blue);
+        
         especes         = 20000;
         enPrison        = false;
         titres          = new ArrayList<Propriete>();
@@ -58,6 +72,21 @@ public class JoueurDefaut implements Joueur
     public String nom()
     {
         return nom;
+    }
+    
+    public void joue()
+    {
+        chosesAFaire().add(new TirerDes(this));
+
+        while ( ! chosesAFaire.empty() ) {
+            Evenement e = chosesAFaire.pop();
+            e.cibler(this);
+                
+            hasChanged();
+            notifyObservers(e.toString());
+            
+            e.executer();
+        }
     }
     
     public boolean enPrison()
@@ -111,6 +140,11 @@ public class JoueurDefaut implements Joueur
         return position;
     }
     
+    public Color couleur()
+    {
+        return c;
+    }
+    
     public void placerSur(Case c)
     {
         position = c;
@@ -119,6 +153,8 @@ public class JoueurDefaut implements Joueur
             e.cibler(this);
             chosesAFaire.add(e);
         }
+        hasChanged();
+        notifyObservers();
     }
     
     public List<Joueur> adversaires()

@@ -2,15 +2,18 @@ package monopoly.gui;
 
 import javax.swing.JPanel;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Color;
+import java.awt.Font;
 
 import java.util.HashMap;
 
+import monopoly.jeu.Monopoly;
 import monopoly.jeu.Case;
+import monopoly.jeu.Joueur;
 
 
 
@@ -59,18 +62,21 @@ public class CaseGraphique extends JPanel
     private Color couleurGroupe;
     private boolean last;
     private Case c;
+    private Point position;
+    private Monopoly m;
 
     private final Font font = new Font("Arial", Font.PLAIN, 9);
     
     
     
-    public CaseGraphique(int largeur, int hauteur, Case c, int rotation)
+    public CaseGraphique(int largeur, int hauteur, Case c, int rotation, Monopoly m)
     {
         this.largeur    = largeur;
         this.hauteur    = hauteur;
         this.c          = c;
         this.rotation   = rotation;
         this.last       = false;
+        this.m          = m;
         
         if (rotation == 90 || rotation == -90)
             setPreferredSize(new Dimension(hauteur, largeur));
@@ -82,6 +88,28 @@ public class CaseGraphique extends JPanel
         } catch(Exception e) {
             couleurGroupe = null;
         }
+        
+        
+//        int     num = c.numero(),
+//                x,
+//                y;
+//        if(rotation == 0) {
+//            x = p.getWidth() - num * getWidth() - 40;
+//            y = p.getHeight() - 60;
+//        } else if(rotation == 90) {
+//            num -= 9;
+//            x = 40;
+//            y = p.hauteur() - num * getHeight() + 40;
+//        } else if(rotation == 180) {
+//            num -= 19;
+//            x = num * getWidth() - 40;
+//            y = 40;
+//        } else {
+//            num -= 30;
+//            x = p.largeur() - 40 ;
+//            y = num * getHeight() + 40;
+//        }
+//        position = new Point(x, y);
     }
     
     
@@ -89,6 +117,16 @@ public class CaseGraphique extends JPanel
     public void setLast()
     {
         last = true;
+    }
+    
+    public Point position()
+    {
+        return position;
+    }
+    
+    public CaseGraphique clone()
+    {
+        return new CaseGraphique(largeur, hauteur, c, rotation, m);
     }
     
     public void paintComponent(Graphics g)
@@ -184,6 +222,17 @@ public class CaseGraphique extends JPanel
                 largeur/2 - (getFontMetrics(font).stringWidth(prix)/2),
                 hauteur - 10
             );
+        }
+        
+        int decalage = -5;
+        for(Joueur j : m.getJoueurs()){
+            if(j.position() == c) {
+                decalage += 5;
+                g.setColor(j.couleur().darker());
+                g.fillOval(5 + decalage, 25 + decalage, 20, 20);
+                g.setColor(j.couleur());
+                g.fillOval(8 + decalage, 28 + decalage, 14, 14);
+            }
         }
     }
 }

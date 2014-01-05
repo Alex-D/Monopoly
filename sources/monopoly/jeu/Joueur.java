@@ -1,10 +1,13 @@
 package monopoly.jeu;
 
+import monopoly.proprietes.Propriete;
+
+import monopoly.evenements.Evenement;
+
 import java.util.List;
 import java.util.Stack;
 
-import monopoly.proprietes.Propriete;
-import monopoly.evenements.Evenement;
+import java.awt.Color;
 
 
 
@@ -12,7 +15,8 @@ import monopoly.evenements.Evenement;
  * Cette interface décrit les fonctionnalités que doit présenter une
  * classe représentant un joueur de Monopoly
  */
-public interface Joueur {
+public interface Joueur
+{
     /**
      * Le numéro du joueur
      */
@@ -22,6 +26,11 @@ public interface Joueur {
      * Le nom du joueur
      */
     String nom();
+    
+    /**
+     * Lance le tour du joueur puis passe au suivant, en fonction du nb
+     */
+    void joue();
     
     /**
      * Indique si le joueur est emprisonné
@@ -68,6 +77,11 @@ public interface Joueur {
      * Donne la case sur laquelle le joueur est placé
      */
     Case position();
+    
+    /**
+     * Donne la couleur de jeton du joueurs
+     */
+    Color couleur();
     
     /**
      * Place le joueur sur la case spécifiée

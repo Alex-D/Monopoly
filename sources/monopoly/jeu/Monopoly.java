@@ -26,6 +26,8 @@ public class Monopoly
     private List<Joueur> joueurs;
     private boolean finDePartie;
     
+    private Joueur courant;
+    
     
     
     /**
@@ -131,6 +133,32 @@ public class Monopoly
         
         for (int i = 1; i <= nbJoueurs; i++)
             joueurs.add(new JoueurDefaut(i, "Joueur " + i, depart));
+        
+        courant = joueurs.get(0);
+    }
+    
+    /**
+     * Retourne le joueur courant
+     */
+    public Joueur courant()
+    {
+        return courant;
+    }
+    
+    /**
+     * Passe la main au joueur suivant
+     */
+    public void suivant()
+    {
+        boolean next    = false;
+        int i = 0;
+        while( joueurs.get(i) == courant)
+            i++;
+        try {
+            courant = joueurs.get(i);
+        } catch( IndexOutOfBoundsException e ) {
+            courant = joueurs.get(0);
+        }
     }
     
     /**
@@ -175,8 +203,8 @@ public class Monopoly
     
     public static void main(String[] args)
     {
-        Monopoly m = new Monopoly(2);
-        PlateauGraphique f = new PlateauGraphique(m);
+        Monopoly m          = new Monopoly(2);
+        PlateauGraphique f  = new PlateauGraphique(m);
         
         /*
         Scanner sc = new Scanner(System.in);
