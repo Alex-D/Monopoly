@@ -5,6 +5,8 @@ import monopoly.jeu.Joueur;
 import monopoly.jeu.JoueurDefaut;
 import monopoly.jeu.Case;
 
+import monopoly.evenements.Evenement;
+
 import java.util.Observer;
 import java.util.Observable;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 
 
@@ -176,12 +179,40 @@ public class PlateauGraphique extends JFrame implements Observer
         p.add(pc, c);
     }
     
+    public static Evenement faireChoix(Evenement a, Evenement b)
+    {
+        Object[] options = new Object[2];
+        String  ask,
+                titre;
+        
+        if( b==null ) {
+            options[0]  =   "Oui";
+            options[1]  =   "Non" ;
+            ask         =   "Souhaitez vous " + a + " ?";
+            titre       =   "Mise en Vente";
+        } else {
+            options[0]  =   "Le premier";
+            options[1]  =   "Le second";
+            ask         =   "Que choisissez vous entre : \n\t- " + a +
+                            "Et : \n\t- " + b +
+                            "\n?";
+            titre       =   "Faire un choix";
+        }
+        int choix = JOptionPane.showOptionDialog(null, ask, titre,
+                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                null, options, options[0]);
+        if( choix==0 )
+            return a;
+        return b;
+    }
+    
     public void update(Observable o, Object arg)
     {
-        if(arg == null) {
+        if(arg == null)
             repaint();
-        } else {
-            pc.setAction((String)arg);
-        }
+        else if( ! ((String)arg).equals("finTour") )
+            pc.addAction((String)arg);
+        else
+            pc.resetAction();
     }
 }

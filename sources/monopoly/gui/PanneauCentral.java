@@ -21,14 +21,14 @@ import java.awt.Insets;
 
 public class PanneauCentral extends JPanel
 {
-    private Monopoly    m;
-    private int         largeur,
-                        hauteur;
-    private Color       fond;
+    private Monopoly            m;
+    private int                 largeur,
+                                hauteur;
+    private Color               fond;
     
-    private JLabel      joueurNom;
-    private JLabel      joueurArgent;
-    private JTextArea   action;
+    private JLabel              joueurNom;
+    private JLabel              joueurArgent;
+    private static JTextArea    action;
     
     
     
@@ -47,9 +47,14 @@ public class PanneauCentral extends JPanel
     
     
     
-    public void setAction(String s)
+    public static void addAction(String s)
     {
-        action.setText(s);
+        action.setText(action.getText() + "\n" + s);
+    }
+    
+    public static void resetAction()
+    {
+        action.setText("");
     }
     
     public void initComponents()
@@ -64,9 +69,9 @@ public class PanneauCentral extends JPanel
         jpn             .setLayout(new GridBagLayout());
         
         JLabel nom          = new JLabel("Joueur courant : ");
-        joueurNom    = new JLabel(m.courant().nom());
+        joueurNom           = new JLabel(m.courant().nom());
         JLabel argent       = new JLabel("Argent restant : ");
-        joueurArgent = new JLabel(m.courant().especes() + "");
+        joueurArgent        = new JLabel(m.courant().especes() + "");
         JButton des         = new JButton("Lancer les Dés");
         action              = new JTextArea();
         

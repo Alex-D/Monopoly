@@ -102,7 +102,7 @@ public class Monopoly
                 }
 
                 tmp.possede(p);
-                Choix c = new Choix(new Achat(tmp), new Rien());
+                Choix c = new Choix(new Achat(tmp), null);
                 tmp.declenche(c);
             }
             

@@ -80,13 +80,17 @@ public class JoueurDefaut extends Observable implements Joueur
 
         while ( ! chosesAFaire.empty() ) {
             Evenement e = chosesAFaire.pop();
-            e.cibler(this);
+            if( e!= null ) {
+                e.cibler(this);
+                    
+                setChanged();
+                notifyObservers(e.toString());
                 
-            hasChanged();
-            notifyObservers(e.toString());
-            
-            e.executer();
+                e.executer();
+            }
         }
+        setChanged();
+        notifyObservers("finTour");
     }
     
     public boolean enPrison()
@@ -153,8 +157,8 @@ public class JoueurDefaut extends Observable implements Joueur
             e.cibler(this);
             chosesAFaire.add(e);
         }
-        hasChanged();
-        notifyObservers();
+        setChanged();
+        notifyObservers(null);
     }
     
     public List<Joueur> adversaires()

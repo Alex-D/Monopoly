@@ -1,7 +1,7 @@
 package monopoly.evenements;
 
 import monopoly.jeu.Joueur;
-import monopoly.gui.PlateauTexte;
+import monopoly.gui.PlateauGraphique;
 
 
 
@@ -45,6 +45,6 @@ public class Choix extends EvenementAbstrait
      */
     public void executer()
     {
-        cible().chosesAFaire().add(PlateauTexte.faireChoix(a, b));
+        cible().chosesAFaire().add(PlateauGraphique.faireChoix(a, b));
     }
 }
