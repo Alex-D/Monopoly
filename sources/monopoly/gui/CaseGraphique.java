@@ -239,16 +239,16 @@ public class CaseGraphique extends JPanel
                         g.fillRect(3, hauteur - 5, largeur - 3, 5);
                         break;
                 }
-            } else {
-                // Prix d'achat de la propriété
-                String prix = "F " + c.propriete().prixAchat();
-                g.setColor(Color.BLACK);
-                g.drawString(
-                    prix,
-                    largeur/2 - (getFontMetrics(font).stringWidth(prix)/2),
-                    hauteur - 7
-                );
             }
+
+            // Prix d'achat de la propriété
+            String prix = "F " + c.propriete().prixAchat();
+            g.setColor(Color.BLACK);
+            g.drawString(
+                prix,
+                largeur/2 - (getFontMetrics(font).stringWidth(prix)/2),
+                hauteur - 7
+            );
         }
     }
 }
