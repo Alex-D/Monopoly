@@ -28,6 +28,14 @@ public class Recette extends EvenementAbstrait
     
     
     /**
+     * Retourne la somme gagnée
+     */
+    public int somme()
+    {
+        return somme;
+    }
+    
+    /**
      * Ajoute la somme d'argent au joueur
      */
     public void executer()

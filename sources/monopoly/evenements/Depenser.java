@@ -28,6 +28,14 @@ public class Depenser extends EvenementAbstrait
     
     
     /**
+     * Retourne la somme perdue
+     */
+    public int somme()
+    {
+        return somme;
+    }
+    
+    /**
      * Retire la somme d'argent au joueur
      */
     public void executer()

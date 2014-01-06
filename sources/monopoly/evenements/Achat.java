@@ -11,6 +11,7 @@ import monopoly.proprietes.ProprieteDefaut;
 public class Achat extends EvenementAbstrait
 {
     private Case c;
+    private boolean peutPayer;
     
     
 
@@ -20,10 +21,21 @@ public class Achat extends EvenementAbstrait
     public Achat(Case c)
     {
         super("Acheter \"" + c.nom() + "\" pour " + c.propriete().prixAchat() + "F");
-        this.c = c;
+        this.c      = c;
+        peutPayer   = false;
     }
 
 
+    
+    public boolean peutPayer()
+    {
+        return peutPayer;
+    }
+    
+    public int somme()
+    {
+        return c.propriete().prixAchat();
+    }
     
     /**
      * Retire la somme de l'achat au joueur
@@ -33,6 +45,8 @@ public class Achat extends EvenementAbstrait
     public void executer()
     {
         if (cible().payer(c.propriete().prixAchat())) {
+            peutPayer = true;
+            
             c.propriete().setProprietaire(cible());
 
             ((ProprieteDefaut) c.propriete())

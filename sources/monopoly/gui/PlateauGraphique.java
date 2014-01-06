@@ -49,7 +49,7 @@ public class PlateauGraphique extends JFrame implements Observer
         GraphicsEnvironment graphicsEnvironment=GraphicsEnvironment.getLocalGraphicsEnvironment();
         int l = (int) graphicsEnvironment.getMaximumWindowBounds().getWidth()-30;
         int h = (int) graphicsEnvironment.getMaximumWindowBounds().getHeight()-30;
-        if( l>h )
+        if( l > h )
             l = h;
         else
             h = l;
@@ -248,9 +248,16 @@ public class PlateauGraphique extends JFrame implements Observer
                 JOptionPane.showMessageDialog(null, "Allez en prison !");
             else if (arg instanceof PayerImpot)
                 JOptionPane.showMessageDialog(null, ((PayerImpot)arg).nom());
+            else if (arg instanceof Depenser)
+                JOptionPane.showMessageDialog(null, "Vous dépensez : " + ((Depenser)arg).somme() + "F");
+            else if (arg instanceof Recette)
+                JOptionPane.showMessageDialog(null, "Vous gagnez : " + ((Recette)arg).somme() + "F");
+            else if (arg instanceof Achat && ((Achat)arg).peutPayer())
+                JOptionPane.showMessageDialog(null, "Vous dépensez : " + ((Achat)arg).somme() + "F");
+            else if (arg instanceof Achat && ! ((Achat)arg).peutPayer())
+                JOptionPane.showMessageDialog(null, "Vous ne possédez pas assez d'argent");
             else if (!(arg instanceof DeplacementRelatif ||
                        arg instanceof Deplacement        ||
-                       arg instanceof Achat              ||
                        arg instanceof Choix              ||
                        arg instanceof Depenser))
                 pc.addAction(arg.toString());
