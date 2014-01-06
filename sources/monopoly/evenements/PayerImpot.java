@@ -41,14 +41,14 @@ public class PayerImpot extends EvenementAbstrait
         if (cible() != destinataire) {
             boolean doubleImpot = true;
             for(Case g : c.groupe()) {
-                System.out.println(g);
-                if(g.propriete().proprietaire().equals(cible()))
-                    doubleImpot = false;
+                try {
+                    if(g.propriete().proprietaire().equals(cible()))
+                        doubleImpot = false;
+                } catch ( NullPointerException e ) {}
             }
             int somme = (doubleImpot) ?
                         c.propriete().loyer()*2 : 
                         c.propriete().loyer();
-            System.out.println(somme + "");
             cible().chosesAFaire().add(new Depenser(somme));
             
             destinataire.chosesAFaire().add(new Recette(somme));

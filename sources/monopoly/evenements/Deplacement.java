@@ -32,7 +32,12 @@ public class Deplacement extends EvenementAbstrait
      */
     public void executer()
     {
-        if(!cible().enPrison() || numeroCase == CaseDefaut.prison().numero())
+        if(!cible().enPrison() || numeroCase == CaseDefaut.prison().numero()) {
+            if ( !  cible().enPrison()
+                    && numeroCase != 1
+                    && cible().position().numero() > numeroCase )
+                cible().chosesAFaire().add(cible().position().get(1).evenement());
             cible().placerSur(cible().position().get(numeroCase));
+        }
     }
 }
