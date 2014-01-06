@@ -13,8 +13,6 @@ NUMÉRO;GROUPE;INTITULÉ;ÉVÉNEMENT;PARAMÈTRES;
 12;chance;Votre immeuble et votre prêt rapportent;recette;15000;
 13;chance;Allez en prison. Ne franchissez pas la case Départ. Ne touchez pas 20.000F;prison;prison;
 14;chance;Reculez de trois cases;déplacement relatif;-3;
-15;chance;Amende pour ivresse;dépense;2000;
-16;chance;Vous avez gagné le prix de mots croisés;recette;10000;
 17;CC;C'est votre anniversaire : chaque joueur doit vous donner 1.000F;cadeau;1000;
 18;CC;Payez l'hôpital;dépense;10000;
 19;CC;Vous avez gagné le 2e prix de beauté;recette;1000;
