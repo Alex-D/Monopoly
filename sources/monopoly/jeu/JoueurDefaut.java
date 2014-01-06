@@ -80,7 +80,7 @@ public class JoueurDefaut extends Observable implements Joueur
         if(enPrison && nombreTour != 0)
             nombreTour --;
         else if(enPrison)
-            enPrison = false;
+            liberer();
         else {
             chosesAFaire().add(new TirerDes(this));
 
@@ -106,7 +106,7 @@ public class JoueurDefaut extends Observable implements Joueur
     public void emprisonner()
     {
         enPrison = true;
-        nombreTour = 3;
+        nombreTour = 2;
     }
     
     public void liberer()
