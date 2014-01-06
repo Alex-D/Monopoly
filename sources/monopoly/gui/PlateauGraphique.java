@@ -224,6 +224,8 @@ public class PlateauGraphique extends JFrame implements Observer
                 JOptionPane.showMessageDialog(null, ((TirerCarte)arg).carte().nom());
             else if (arg instanceof Emprisonner)
                 JOptionPane.showMessageDialog(null, "Allez en prison !");
+            else if (arg instanceof PayerImpot)
+                JOptionPane.showMessageDialog(null, ((PayerImpot)arg).nom());
             else if ( ! (   arg instanceof DeplacementRelatif   ||
                             arg instanceof Deplacement          ||
                             arg instanceof Achat                ||
