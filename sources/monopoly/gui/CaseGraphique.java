@@ -88,28 +88,6 @@ public class CaseGraphique extends JPanel
         } catch(Exception e) {
             couleurGroupe = null;
         }
-        
-        
-//        int     num = c.numero(),
-//                x,
-//                y;
-//        if(rotation == 0) {
-//            x = p.getWidth() - num * getWidth() - 40;
-//            y = p.getHeight() - 60;
-//        } else if(rotation == 90) {
-//            num -= 9;
-//            x = 40;
-//            y = p.hauteur() - num * getHeight() + 40;
-//        } else if(rotation == 180) {
-//            num -= 19;
-//            x = num * getWidth() - 40;
-//            y = 40;
-//        } else {
-//            num -= 30;
-//            x = p.largeur() - 40 ;
-//            y = num * getHeight() + 40;
-//        }
-//        position = new Point(x, y);
     }
     
     
@@ -171,7 +149,7 @@ public class CaseGraphique extends JPanel
 
 
 
-        // Textes
+        // Intitulé de la case
         g.setFont(font);
 
         String l23 = c.nom()
@@ -201,38 +179,43 @@ public class CaseGraphique extends JPanel
         g.drawString(
             l1,
             largeur/2 - (getFontMetrics(font).stringWidth(l1)/2),
-            35
+            30
         );
         g.drawString(
             l2,
             largeur/2 - (getFontMetrics(font).stringWidth(l2)/2),
-            47
+            42
         );
         g.drawString(
             l3,
             largeur/2 - (getFontMetrics(font).stringWidth(l3)/2),
-            60
+            55
         );
 
+
+
+        // Prix d'achat de la propriété
         if (c.propriete() != null) {
             String prix = "F " + c.propriete().prixAchat();
 
             g.drawString(
                 prix,
                 largeur/2 - (getFontMetrics(font).stringWidth(prix)/2),
-                hauteur - 10
+                hauteur - 7
             );
         }
+
+
         
-        int decalage = -5;
-        for(Joueur j : m.getJoueurs()){
-            if(j.position() == c) {
-                decalage += 5;
+        // Affichage des joueurs
+        int decalage = 0;
+        for (Joueur j : m.getJoueurs())
+            if (j.position() == c) {
+                decalage += 7;
                 g.setColor(j.couleur().darker());
-                g.fillOval(5 + decalage, 25 + decalage, 20, 20);
+                g.fillOval(5 + decalage, 20 + decalage, 20, 20);
                 g.setColor(j.couleur());
-                g.fillOval(8 + decalage, 28 + decalage, 14, 14);
+                g.fillOval(8 + decalage, 23 + decalage, 14, 14);
             }
-        }
     }
 }
