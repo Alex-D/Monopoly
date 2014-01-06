@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.awt.Container;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Dimension;
@@ -53,8 +52,8 @@ public class PlateauGraphique extends JFrame implements Observer
         pack();
         setVisible(true);
         
-        for( Joueur j : m.getJoueurs() ) {
-            ((JoueurDefaut)j).addObserver(this);
+        for (Joueur j : m.getJoueurs()) {
+            ((JoueurDefaut) j).addObserver(this);
         }
     }
     
@@ -208,31 +207,34 @@ public class PlateauGraphique extends JFrame implements Observer
     
     public void update(Observable o, Object arg)
     {
+        repaint();
+
         if (arg == null)
-            repaint();
-        else if (arg.equals("argent"))
+            return;
+
+        if (arg.equals("argent"))
             pc.refresh();
         else {
             if (arg instanceof TirerDes) {
-                TirerDes e = (TirerDes)arg;
+                TirerDes e = (TirerDes) arg;
                 JOptionPane.showMessageDialog(null, "Vous avez fait : " + e.tir1() + ".");
                 if(e.doubletir() != 0)
-                    JOptionPane.showMessageDialog(null,
+                    JOptionPane.showMessageDialog(
+                        null,
                         "Double ! Vous allez aussi avancer de : " + e.doubletir() + " cases."
-                     );
-            } else if (arg instanceof TirerCarte)
-                JOptionPane.showMessageDialog(null, ((TirerCarte)arg).carte().nom());
+                    );
+            }
+            else if (arg instanceof TirerCarte)
+                JOptionPane.showMessageDialog(null, ((TirerCarte) arg).carte().nom());
             else if (arg instanceof Emprisonner)
                 JOptionPane.showMessageDialog(null, "Allez en prison !");
             else if (arg instanceof PayerImpot)
                 JOptionPane.showMessageDialog(null, ((PayerImpot)arg).nom());
-            else if ( ! (   arg instanceof DeplacementRelatif   ||
-                            arg instanceof Deplacement          ||
-                            arg instanceof Achat                ||
-                            arg instanceof Choix                ||
-                            arg instanceof Depenser
-                        )
-                    )
+            else if (!(arg instanceof DeplacementRelatif ||
+                       arg instanceof Deplacement        ||
+                       arg instanceof Achat              ||
+                       arg instanceof Choix              ||
+                       arg instanceof Depenser))
                 pc.addAction(arg.toString());
         }
     }

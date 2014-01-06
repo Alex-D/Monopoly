@@ -78,9 +78,9 @@ public class JoueurDefaut extends Observable implements Joueur
     {
         chosesAFaire().add(new TirerDes(this));
 
-        while ( ! chosesAFaire.empty() ) {
+        while (!chosesAFaire.empty()) {
             Evenement e = chosesAFaire.pop();
-            if( e!= null ) {
+            if (e != null) {
                 e.cibler(this);
                 
                 e.executer();
