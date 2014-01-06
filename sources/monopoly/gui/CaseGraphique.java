@@ -192,20 +192,6 @@ public class CaseGraphique extends JPanel
             55
         );
 
-
-
-        // Prix d'achat de la propriété
-        if (c.propriete() != null) {
-            String prix = "F " + c.propriete().prixAchat();
-
-            g.drawString(
-                prix,
-                largeur/2 - (getFontMetrics(font).stringWidth(prix)/2),
-                hauteur - 7
-            );
-        }
-
-
         
         // Affichage des joueurs
         int decalage = 0;
@@ -217,5 +203,52 @@ public class CaseGraphique extends JPanel
                 g.setColor(j.couleur());
                 g.fillOval(8 + decalage, 23 + decalage, 14, 14);
             }
+
+
+
+        // Affichage des propriétés
+        if (c.propriete() != null) {
+            if (c.propriete().proprietaire() != null) {
+                Color couleur = c.propriete().proprietaire().couleur();
+
+                switch (c.propriete().niveauImmobilier()) {
+                    case 5:
+                        // Affichage de l'hotel
+                        g.setColor(couleur.darker());
+                        g.fillRect(largeur - 10, hauteur - 7, 20, 20);
+                        g.setColor(couleur);
+                        g.fillRect(largeur - 7, hauteur - 10, 14, 14);
+                        break;
+
+                    case 4:
+                    case 3:
+                    case 2:
+                    case 1:
+                        // Affichage des maisons
+                        for (int i = 0; i < c.propriete().niveauImmobilier(); i++) {
+                            g.setColor(couleur.darker());
+                            g.fillRect(5 + i*20, hauteur - 7, 20, 20);
+                            g.setColor(couleur);
+                            g.fillRect(8 + i*20, hauteur - 10, 14, 14);
+                        }
+                        break;
+
+                    case 0:
+                        // Affichage de la propriété
+                        g.setColor(couleur);
+                        g.fillRect(3, hauteur - 5, largeur - 3, 5);
+                        break;
+                }
+            } else {
+                // Prix d'achat de la propriété
+                String prix = "F " + c.propriete().prixAchat();
+                g.setColor(Color.BLACK);
+                g.drawString(
+                    prix,
+                    largeur/2 - (getFontMetrics(font).stringWidth(prix)/2),
+                    hauteur - 7
+                );
+            }
+        }
     }
 }

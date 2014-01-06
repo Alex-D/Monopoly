@@ -24,7 +24,7 @@ public class ProprieteDefaut implements Propriete
     
     
     /**
-     * Défini une propriété selon sa position, son prix d'achat, son loyer, de son nom et de sa constructabilite
+     * Défini une propriété selon sa position, son prix d'achat, son loyer, son nom et de sa constructabilite
      */
     public ProprieteDefaut(Case position, int prixAchat, String[] loyer, String nom, Groupe groupe, boolean constructible)
     {
@@ -91,23 +91,28 @@ public class ProprieteDefaut implements Propriete
     
     public boolean constructible()
     {
-        return constructible;
+        return groupe().proprietaireUnique() && niveauImmobilier() == groupe().niveauImmobilierLePlusBas();
     }
     
     public boolean construire()
     {
-        constructible = false;
-        
-        // TODO: return
-        return true;
+        if (constructible() && niveauImmobilier() < 5 && proprietaire().payer(groupe().coutImmo())) {
+            niveauImmobilier++;
+            return true;
+        }
+
+        return false;
     }
     
     public boolean detruire()
     {
-        constructible = true;
+        if (niveauImmobilier() > 0) {
+            niveauImmobilier--;
+            proprietaire().verser(groupe().coutImmo()/2);
+            return true;
+        }
         
-        // TODO: return
-        return true;
+        return false;
     }
     
     public Joueur proprietaire()

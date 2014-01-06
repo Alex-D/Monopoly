@@ -34,4 +34,10 @@ public interface Groupe
      * Indique si le groupe appartient entièrement à un seul joueur
      */
     boolean proprietaireUnique();
+
+    /**
+     * Donne le niveau de construction le plus bas des propriétés
+     * du groupe
+     */
+    int niveauImmobilierLePlusBas();
 }

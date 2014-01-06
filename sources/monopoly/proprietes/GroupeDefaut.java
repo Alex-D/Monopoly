@@ -63,11 +63,24 @@ public class GroupeDefaut implements Groupe
         for (Propriete p : composition)
             if (j == null)
                 j = p.proprietaire();
-            else if (!p.proprietaire().equals(j))
+            else if (p.proprietaire() == null || !p.proprietaire().equals(j))
                 return false;
         
         return true;
     }
+
+    public int niveauImmobilierLePlusBas()
+    {
+        int niveau = 0;
+
+        for (Propriete p : composition)
+            if (p.niveauImmobilier() < niveau)
+                niveau = p.niveauImmobilier();
+
+        return niveau;
+    }
+
+
     
     public static Map<String, Groupe> groupes()
     {
