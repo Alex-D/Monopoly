@@ -12,6 +12,8 @@ import monopoly.jeu.Joueur;
 public class TirerDes extends EvenementAbstrait
 {
     private static Random generator = new Random();   // Generateur de jet de dés
+    private int tir1;
+    private int tirdouble;
     
     
     
@@ -22,6 +24,9 @@ public class TirerDes extends EvenementAbstrait
     {
         super("Tirer dés");
         cibler(j);
+        
+        tir1        = 0;
+        tirdouble   = 0;
     }
     
     
@@ -39,19 +44,28 @@ public class TirerDes extends EvenementAbstrait
         
         if( cible().enPrison() &&  tir1 == tir2 ) {
             cible().liberer();
-//            PlateauGraphique.addAction("Vous êtes libéré !");
         } else if( !cible().enPrison() ) {
-//            PlateauGraphique.addAction("Vous avez fait " + tir1 + " et " + tir2 + ".");
             DeplacementRelatif d = new DeplacementRelatif(tir1 + tir2);
             d.cibler(cible());
+            this.tir1 = tir1 + tir2;
             
             if(tir1 == tir2){
                 tir1 = (int) (generator.nextFloat() * 6) + 1;
-//                PlateauGraphique.addAction("Double ! Vous avancez de " + tir1 + " cases en plus.");
+                this.tirdouble = tir1;
                 DeplacementRelatif d2 = new DeplacementRelatif(tir1);
                 cible().chosesAFaire().add( d2 );
             }
             cible().chosesAFaire().add( d );
         }
+    }
+    
+    public int tir1()
+    {
+        return tir1;
+    }
+    
+    public int doubletir()
+    {
+        return tirdouble;
     }
 }

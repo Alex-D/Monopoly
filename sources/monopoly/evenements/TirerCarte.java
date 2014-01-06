@@ -40,4 +40,9 @@ public class TirerCarte extends EvenementAbstrait
     {
         cible().chosesAFaire().push(carte);
     }
+    
+    public Carte carte()
+    {
+        return carte;
+    }
 }

@@ -22,8 +22,6 @@ public class ButtonListener implements ActionListener
     
     public void actionPerformed(ActionEvent e)
     {
-        System.out.println(e.getActionCommand());
-        
         if(e.getActionCommand().equals("Lancer les Dés")) {
             m   .courant().joue();
             pc  .activeFinir();
@@ -31,6 +29,7 @@ public class ButtonListener implements ActionListener
         } else {
             m   .suivant();
             pc  .refresh();
+            pc.resetAction();
             pc  .activeDes();
             pc  .griseFinir();
         }

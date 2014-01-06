@@ -82,11 +82,11 @@ public class JoueurDefaut extends Observable implements Joueur
             Evenement e = chosesAFaire.pop();
             if( e!= null ) {
                 e.cibler(this);
-                    
-                setChanged();
-                notifyObservers(e.toString());
                 
                 e.executer();
+                
+                setChanged();
+                notifyObservers(e);
             }
         }
     }
@@ -124,8 +124,12 @@ public class JoueurDefaut extends Observable implements Joueur
     
     public boolean payer(int somme)
     {
-        if (especes > somme) {
+        if (especes >= somme) {
             especes -= somme;
+            
+            setChanged();
+            notifyObservers("argent");
+            
             return true;
         }
 
@@ -135,6 +139,9 @@ public class JoueurDefaut extends Observable implements Joueur
     public void verser(int somme)
     {
         especes += somme;
+            
+        setChanged();
+        notifyObservers("argent");
     }
     
     public Case position()

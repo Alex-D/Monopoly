@@ -5,7 +5,7 @@ import monopoly.jeu.Joueur;
 import monopoly.jeu.JoueurDefaut;
 import monopoly.jeu.Case;
 
-import monopoly.evenements.Evenement;
+import monopoly.evenements.*;
 
 import java.util.Observer;
 import java.util.Observable;
@@ -208,11 +208,30 @@ public class PlateauGraphique extends JFrame implements Observer
     
     public void update(Observable o, Object arg)
     {
-        if(arg == null)
+        if (arg == null)
             repaint();
-        else if( ! ((String)arg).equals("finTour") )
-            pc.addAction((String)arg);
-        else
-            pc.resetAction();
+        else if (arg.equals("argent"))
+            pc.refresh();
+        else {
+            if (arg instanceof TirerDes) {
+                TirerDes e = (TirerDes)arg;
+                JOptionPane.showMessageDialog(null, "Vous avez fait : " + e.tir1() + ".");
+                if(e.doubletir() != 0)
+                    JOptionPane.showMessageDialog(null,
+                        "Double ! Vous allez aussi avancer de : " + e.doubletir() + " cases."
+                     );
+            } else if (arg instanceof TirerCarte)
+                JOptionPane.showMessageDialog(null, ((TirerCarte)arg).carte().nom());
+            else if (arg instanceof Emprisonner)
+                JOptionPane.showMessageDialog(null, "Allez en prison !");
+            else if ( ! (   arg instanceof DeplacementRelatif   ||
+                            arg instanceof Deplacement          ||
+                            arg instanceof Achat                ||
+                            arg instanceof Choix                ||
+                            arg instanceof Depenser
+                        )
+                    )
+                pc.addAction(arg.toString());
+        }
     }
 }
