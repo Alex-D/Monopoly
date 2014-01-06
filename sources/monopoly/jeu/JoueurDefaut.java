@@ -28,6 +28,7 @@ public class JoueurDefaut extends Observable implements Joueur
     private Case position;      // Case sur laquelle se situe le joueur
     private Color c;
     private boolean enPrison;   // Vrai si le joueur est en prison, faux sinon
+    private int nombreTour;     // Nombre de tour a passer en prison
     private boolean elimine;    // Vrai si le joueur est éliminé, faux sinon
     private List<Propriete> titres;         // Les titres de propriétés du joueur
     private List<Evenement> cartes;         // Les cartes conservées par le joueur
@@ -76,17 +77,23 @@ public class JoueurDefaut extends Observable implements Joueur
     
     public void joue()
     {
-        chosesAFaire().add(new TirerDes(this));
+        if(enPrison && nombreTour != 0)
+            nombreTour --;
+        else if(enPrison)
+            enPrison = false;
+        else {
+            chosesAFaire().add(new TirerDes(this));
 
-        while (!chosesAFaire.empty()) {
-            Evenement e = chosesAFaire.pop();
-            if (e != null) {
-                e.cibler(this);
-                
-                e.executer();
-                
-                setChanged();
-                notifyObservers(e);
+            while (!chosesAFaire.empty()) {
+                Evenement e = chosesAFaire.pop();
+                if (e != null) {
+                    e.cibler(this);
+                    
+                    e.executer();
+                    
+                    setChanged();
+                    notifyObservers(e);
+                }
             }
         }
     }
@@ -99,6 +106,7 @@ public class JoueurDefaut extends Observable implements Joueur
     public void emprisonner()
     {
         enPrison = true;
+        nombreTour = 3;
     }
     
     public void liberer()

@@ -16,6 +16,7 @@ import monopoly.jeu.Joueur;
 public class TirerCarte extends EvenementAbstrait
 {
     private Carte carte;
+    private List<Carte> tas;
 
 
 
@@ -26,9 +27,7 @@ public class TirerCarte extends EvenementAbstrait
     {
         super("Tirer carte " + nomTas);
 
-        List<Carte> tas = Carte.tas(nomTas);
-        Collections.shuffle(tas);
-        this.carte = tas.get(0);
+        tas = Carte.tas(nomTas);
     }
 
 
@@ -38,6 +37,8 @@ public class TirerCarte extends EvenementAbstrait
      */
     public void executer()
     {
+        Collections.shuffle(tas);
+        this.carte = tas.get(0);
         cible().chosesAFaire().push(carte);
     }
     
