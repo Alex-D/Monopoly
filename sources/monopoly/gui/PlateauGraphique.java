@@ -11,6 +11,7 @@ import java.util.Observer;
 import java.util.Observable;
 import java.util.ArrayList;
 
+import java.awt.GraphicsEnvironment;
 import java.awt.Container;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -24,12 +25,9 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import java.awt.event.ComponentListener;
-import java.awt.event.ComponentEvent;
 
 
-
-public class PlateauGraphique extends JFrame implements Observer, ComponentListener
+public class PlateauGraphique extends JFrame implements Observer
 {
     private Monopoly m;
     private ArrayList<CaseGraphique> cases;
@@ -40,32 +38,34 @@ public class PlateauGraphique extends JFrame implements Observer, ComponentListe
     
     
     
-    public PlateauGraphique(int largeur, int hauteur, Monopoly m)
+    public PlateauGraphique(Monopoly m)
     {
         
         this.m      = m;
         cases       = new ArrayList<CaseGraphique>();
         
-        this.largeur    = largeur;
-        this.hauteur    = hauteur;
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        GraphicsEnvironment graphicsEnvironment=GraphicsEnvironment.getLocalGraphicsEnvironment();
+        int l = (int) graphicsEnvironment.getMaximumWindowBounds().getWidth()-30;
+        int h = (int) graphicsEnvironment.getMaximumWindowBounds().getHeight()-30;
+        if( l>h )
+            l = h;
+        else
+            h = l;
+        largeur = l;
+        hauteur = h;
         
         initialiser();
         
         addComponents(getContentPane());
-        
-        setVisible(true);
         
         for (Joueur j : m.getJoueurs()) {
             ((JoueurDefaut) j).addObserver(this);
         }
         
         pack();
-        System.out.println("Panneau : " + getWidth() + "x" + getHeight());
-        System.out.println("Cases : " + cases.get(0).getWidth() + "x" + cases.get(0).getHeight());
-        System.out.println("Central : " + pc.getWidth() + "x" + pc.getHeight());
-        
-        //setSize(largeur, hauteur);
-        //addComponentListener(this);
+        setVisible(true);
     }
     
     
@@ -73,7 +73,7 @@ public class PlateauGraphique extends JFrame implements Observer, ComponentListe
     public void initialiser()
     {
         setTitle("MONOPOLY");
-        //setResizable(false);
+        setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(new Color(182, 211, 189));
     }
@@ -223,32 +223,6 @@ public class PlateauGraphique extends JFrame implements Observer, ComponentListe
         return b;
     }
     
-    /**
-     * Méthode permettant de redimensionner tout le plateau
-     */
-    public void redimensionner(int largeur, int hauteur)
-    {
-        this.largeur    = largeur;
-        this.hauteur    = hauteur;
-        
-        for(CaseGraphique cg : cases) {
-            largeur = this.largeur;
-            if( cg.last() )
-                largeur = largeur/8;
-            else
-                largeur = largeur/12;
-            System.out.println(largeur);
-            cg.resize(largeur, hauteur/8);
-            cg.setPreferredSize(new Dimension(largeur, hauteur/8));
-        }
-        largeur = this.largeur;
-        
-        pc.setPreferredSize(new Dimension(largeur * 9 / 12, hauteur * 9 / 12));
-        
-        pack();
-        setVisible(true);
-    }
-    
     public void update(Observable o, Object arg)
     {
         repaint();
@@ -281,15 +255,5 @@ public class PlateauGraphique extends JFrame implements Observer, ComponentListe
                        arg instanceof Depenser))
                 pc.addAction(arg.toString());
         }
-    }
-    
-    public void componentHidden(ComponentEvent e) {}
-
-    public void componentMoved(ComponentEvent e) {}
-
-    public void componentShown(ComponentEvent e) {}
-
-    public void componentResized(ComponentEvent e) {
-        redimensionner(getWidth(), getHeight());
     }
 }
