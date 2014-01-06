@@ -78,11 +78,6 @@ public class CaseGraphique extends JPanel
         this.last       = false;
         this.m          = m;
         
-        if (rotation == 90 || rotation == -90)
-            setPreferredSize(new Dimension(hauteur, largeur));
-        else
-            setPreferredSize(new Dimension(largeur, hauteur));
-        
         try {
             couleurGroupe = CouleurGroupe.get(c.propriete().groupe().nom());
         } catch(Exception e) {
@@ -97,6 +92,11 @@ public class CaseGraphique extends JPanel
         last = true;
     }
     
+    public boolean last()
+    {
+        return last;
+    }
+    
     public Point position()
     {
         return position;
@@ -105,6 +105,17 @@ public class CaseGraphique extends JPanel
     public CaseGraphique clone()
     {
         return new CaseGraphique(largeur, hauteur, c, rotation, m);
+    }
+    
+    /**
+     *  Redimensionne la case, et la rafraichit en conséquence
+     */
+    public void redimensionner(int largeur, int hauteur)
+    {
+        this.largeur    = largeur;
+        this.hauteur    = hauteur;
+        
+        repaint();
     }
     
     public void paintComponent(Graphics g)

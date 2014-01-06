@@ -34,10 +34,8 @@ public class PanneauCentral extends JPanel
     
     
     
-    public PanneauCentral(int largeur, int hauteur, Monopoly m)
+    public PanneauCentral(Monopoly m)
     {
-        this.largeur    = largeur;
-        this.hauteur    = hauteur;
         this.m          = m;
         
         fond = new Color(182, 211, 189);
@@ -91,7 +89,7 @@ public class PanneauCentral extends JPanel
         joueurArgent    .setPreferredSize(new Dimension(150, 25));
         des             .setPreferredSize(new Dimension(150, 25));
         finir           .setPreferredSize(new Dimension(150, 25));
-        action          .setPreferredSize(new Dimension(350, 100));
+        action          .setPreferredSize(new Dimension(200, 100));
         
         gbc.gridy       = 0;
         gbc.gridx       = 0;
@@ -125,26 +123,41 @@ public class PanneauCentral extends JPanel
         add(jpn, BorderLayout.CENTER);
     }
     
+    /**
+     *  Desactive le bouton Des
+     */
     public void griseDes()
     {
         des.setEnabled(false);
     }
     
+    /**
+     *  Active le bouton Des
+     */
     public void activeDes()
     {
         des.setEnabled(true);
     }
     
+    /**
+     *  Desactive le bouton Finir
+     */
     public void griseFinir()
     {
         finir.setEnabled(false);
     }
     
+    /**
+     *  Active le bouton Finir
+     */
     public void activeFinir()
     {
         finir.setEnabled(true);
     }
     
+    /**
+     * Rafraichit l'ensemble du panneau
+     */
     public void refresh() {
         joueurNom       .setText(m.courant().nom());
         joueurArgent    .setText(m.courant().especes() + "");
