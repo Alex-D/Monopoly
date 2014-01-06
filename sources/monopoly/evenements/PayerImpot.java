@@ -14,7 +14,7 @@ public class PayerImpot extends EvenementAbstrait
     /**
      * Construit un évènement PayerImpot en fonction du destinataire et de la valeur de cet impôt
      */
-    public PayerImpot( Joueur destinataire, int valeur)
+    public PayerImpot(Joueur destinataire, int valeur)
     {
         super("Payer un impot d'une valeur de " + valeur + "F au joueur " + destinataire + ".");
         this.destinataire = destinataire;
@@ -29,12 +29,12 @@ public class PayerImpot extends EvenementAbstrait
      */
     public void executer()
     {
-        if( cible() != destinataire ) {
-            Evenement d = new Depenser( valeur );
-            d.cibler( cible() );
-            cible().chosesAFaire().add( d );
+        if (cible() != destinataire) {
+            Evenement d = new Depenser(valeur);
+            d.cibler(cible());
+            cible().chosesAFaire().add(d);
             
-            destinataire.verser( valeur );
+            destinataire.verser(valeur);
         }
     }
 }

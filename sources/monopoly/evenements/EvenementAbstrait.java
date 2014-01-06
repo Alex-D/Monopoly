@@ -45,6 +45,6 @@ public abstract class EvenementAbstrait implements Evenement
 
     public String toString()
     {
-        return ">>[Evènement] " + nom + " | " + cible;
+        return nom();
     }
 }

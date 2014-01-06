@@ -10,7 +10,7 @@ public enum MetaEvenement {
     CADEAU              ("cadeau",              "Cadeau"),
     TIRERDES            ("tirer des",           "TirerDes",     false),
     EMPRISONNER         ("prison",              "Emprisonner",  false),
-    DEPENSER            ("dépense",             "Depenser"),
+    DEPENSER            ("depense",             "Depenser"),
     FRAISIMMO           ("frais immo",          "FraisImmo"),
     RECETTE             ("recette",             "Recette"),
     DEPLACEMENT         ("aller",               "Deplacement"),
@@ -47,6 +47,8 @@ public enum MetaEvenement {
      */
     public static Evenement creer(String evenement, String parametres)
     {
+        evenement = evenement.replace("é", "e");
+
         try {
             for (MetaEvenement e : MetaEvenement.values()) {
                 if (e.nom.equals(evenement)) {

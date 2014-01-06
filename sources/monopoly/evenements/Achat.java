@@ -45,11 +45,4 @@ public class Achat extends EvenementAbstrait
             c.declenche(new PayerImpot(cible(), c.propriete().loyer()));
         }
     }
-    
-
-    
-    public String toString()
-    {
-        return nom();
-    }
 }
