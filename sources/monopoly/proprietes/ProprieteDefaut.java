@@ -146,7 +146,7 @@ public class ProprieteDefaut implements Propriete
             
         return (proprietaire == null)
             ? ">>[Propriete] " + nom + groupe + " | prix d'achat : " + prixAchat
-            : ">>[Propriete] " + nom + groupe + " | loyer : " + loyer + " | proprietaire : " + proprietaire
+            : ">>[Propriete] " + nom + groupe + " | loyer : " + loyer() + " | proprietaire : " + proprietaire
         ;
     }
 }

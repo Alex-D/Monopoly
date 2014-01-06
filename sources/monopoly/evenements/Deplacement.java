@@ -1,6 +1,7 @@
 package monopoly.evenements;
 
 import monopoly.jeu.Joueur;
+import monopoly.jeu.CaseDefaut;
 
 
 
@@ -31,6 +32,7 @@ public class Deplacement extends EvenementAbstrait
      */
     public void executer()
     {
-        cible().placerSur(cible().position().get(numeroCase));
+        if(!cible().enPrison() || numeroCase == CaseDefaut.prison().numero())
+            cible().placerSur(cible().position().get(numeroCase));
     }
 }

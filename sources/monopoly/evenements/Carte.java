@@ -58,8 +58,7 @@ public class Carte extends EvenementAbstrait
      */
     public void executer()
     {
-        evenement.cibler(cible());
-        evenement.executer();
+        cible().chosesAFaire().add(evenement);
     }
 
 

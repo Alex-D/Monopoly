@@ -3,6 +3,8 @@ package monopoly.jeu;
 import monopoly.proprietes.Propriete;
 import monopoly.evenements.Evenement;
 
+import java.util.ArrayList;
+
 
 
 /**
@@ -29,6 +31,12 @@ public interface Case extends Iterable<Case>
      * Retourne la case suivante
      */
     Case suivante();
+    
+    
+    /**
+     * Retourne toutes les cases du groupe de la case
+     */
+    ArrayList<Case> groupe();
     
     /**
      * Donne le nombre de cases total

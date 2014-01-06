@@ -32,7 +32,8 @@ public class Construire extends EvenementAbstrait
      */
     public void executer()
     {
-        if (c.propriete().proprietaire().equals(cible()) && c.propriete().construire())
-            c.declenche(new PayerImpot(cible(), c.propriete().loyer()));
+        if (c.propriete().proprietaire() == cible() && c.propriete().construire()) {
+            
+        }
     }
 }

@@ -82,6 +82,18 @@ public class JoueurDefaut extends Observable implements Joueur
         else if(enPrison)
             liberer();
         else {
+            while (!chosesAFaire.empty()) {
+                Evenement e = chosesAFaire.pop();
+                if (e != null) {
+                    e.cibler(this);
+                    
+                    e.executer();
+                    
+                    setChanged();
+                    notifyObservers(e);
+                }
+            }
+            
             chosesAFaire().add(new TirerDes(this));
 
             while (!chosesAFaire.empty()) {

@@ -52,11 +52,11 @@ public class Achat extends EvenementAbstrait
             ((ProprieteDefaut) c.propriete())
                 .setNom(c.propriete().nom().replace(
                     "Libre",
-                    "Possédée par " + c.propriete().proprietaire()
+                    "Possédée par " + cible()
                 ))
             ;
 
-            c.declenche(new PayerImpot(cible(), c.propriete().loyer()));
+            c.declenche(new PayerImpot(cible(), c));
         }
     }
 }

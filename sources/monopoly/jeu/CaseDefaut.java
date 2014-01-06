@@ -2,6 +2,7 @@ package monopoly.jeu;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import monopoly.proprietes.Propriete;
@@ -76,6 +77,18 @@ public class CaseDefaut implements Case
         return nom;
     }
     
+    public ArrayList<Case> groupe()
+    {
+        ArrayList<Case> list = new ArrayList<Case>();
+        for(Case c : cases.values()) {
+            try {
+                if(c.propriete().groupe() == propriete().groupe() )
+                    list.add(c);
+            } catch ( NullPointerException e ) {}
+        }
+        return list;
+    }
+    
     public Propriete propriete()
     {
         return propriete;
@@ -108,6 +121,9 @@ public class CaseDefaut implements Case
                 new CaseDefaut(i, "Case manquante");
     }
     
+    /**
+     * Retourne la case prison
+     */
     public static Case prison()
     {
         Case tmp;

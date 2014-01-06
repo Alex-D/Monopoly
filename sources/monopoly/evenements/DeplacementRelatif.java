@@ -31,6 +31,7 @@ public class DeplacementRelatif extends EvenementAbstrait
      */
     public void executer()
     {
-        cible().placerSur(cible().position().getRelative(nbMouvements));
+        if(!cible().enPrison())
+            cible().placerSur(cible().position().getRelative(nbMouvements));
     }
 }
