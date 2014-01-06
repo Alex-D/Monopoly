@@ -19,7 +19,7 @@ public class Achat extends EvenementAbstrait
      */
     public Achat(Case c)
     {
-        super("acheter \"" + c.nom() + "\" pour " + c.propriete().prixAchat() + "F");
+        super("Acheter \"" + c.nom() + "\" pour " + c.propriete().prixAchat() + "F");
         this.c = c;
     }
 
@@ -27,21 +27,23 @@ public class Achat extends EvenementAbstrait
     
     /**
      * Retire la somme de l'achat au joueur
-     * Défini le joueur comme étant le propriétaire
+     * Puis, s'il a assez d'argent,
+     * défini le joueur comme étant le propriétaire
      */
     public void executer()
     {
-        cible().payer(c.propriete().prixAchat());
-        c.propriete().setProprietaire(cible());
+        if (cible().payer(c.propriete().prixAchat())) {
+            c.propriete().setProprietaire(cible());
 
-        ((ProprieteDefaut) c.propriete())
-            .setNom(c.propriete().nom().replace(
-                "Libre",
-                "Possédée par " + c.propriete().proprietaire()
-            ))
-        ;
+            ((ProprieteDefaut) c.propriete())
+                .setNom(c.propriete().nom().replace(
+                    "Libre",
+                    "Possédée par " + c.propriete().proprietaire()
+                ))
+            ;
 
-        c.declenche(new PayerImpot(cible(), c.propriete().loyer()));
+            c.declenche(new PayerImpot(cible(), c.propriete().loyer()));
+        }
     }
     
 

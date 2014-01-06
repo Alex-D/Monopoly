@@ -124,7 +124,7 @@ public class JoueurDefaut extends Observable implements Joueur
     
     public boolean payer(int somme)
     {
-        if (especes >= somme) {
+        if (especes() >= somme) {
             especes -= somme;
             
             setChanged();
