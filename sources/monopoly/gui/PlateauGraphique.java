@@ -11,6 +11,7 @@ import java.util.Observer;
 import java.util.Observable;
 import java.util.ArrayList;
 
+import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Container;
 import java.awt.GridBagLayout;
@@ -38,14 +39,26 @@ public class PlateauGraphique extends JFrame implements Observer
     
     
     
-    public PlateauGraphique(int largeur, int hauteur, Monopoly m)
+    public PlateauGraphique(/*int largeur, int hauteur,*/ Monopoly m)
     {
         
         this.m      = m;
         cases       = new ArrayList<CaseGraphique>();
         
-        this.largeur = largeur;
-        this.hauteur = hauteur;
+        setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        device.setFullScreenWindow(this);
+        //setSize(gd.getWidth(), gd.getHeight());
+        this.largeur = getContentPane().getWidth();
+        this.hauteur = getContentPane().getHeight();
+        
+        if(largeur>hauteur)
+            largeur = hauteur;
+        else
+            hauteur = largeur;
+        
+        //this.largeur = largeur;
+        //this.hauteur = hauteur;
         
         initialiser();
         
@@ -179,7 +192,6 @@ public class PlateauGraphique extends JFrame implements Observer
         
         pc = new PanneauCentral(m);
         pc.setPreferredSize(new Dimension(largeur * 8 / 12, hauteur * 8 / 12));
-        pc.setMaximumSize(new Dimension(largeur * 8 / 12, hauteur * 8 / 12));
         c.gridy         = 1;
         c.gridx         = 1;
         c.fill          = GridBagConstraints.BOTH;

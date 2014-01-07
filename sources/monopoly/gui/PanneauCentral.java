@@ -22,8 +22,6 @@ import java.awt.Insets;
 public class PanneauCentral extends JPanel
 {
     private Monopoly            m;
-    private int                 largeur,
-                                hauteur;
     private Color               fond;
     
     private JLabel              joueurNom;
