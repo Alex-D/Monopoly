@@ -97,8 +97,21 @@ public class Monopoly
 
                     if (ligne.getString(7) != null)
                         loyer[0] = ligne.getString(7).split(",")[0];
-
-                    p = new ProprieteDefaut(tmp, ligne.getInt(5), loyer, "Libre", null, false);
+                    
+                    Groupe g = null;
+                    if (tmp.nom().contains("Gare")) {
+                        g = (GroupeDefaut.groupes().get("Gares") != null)
+                            ? GroupeDefaut.groupes().get("Gares")
+                            : new GroupeDefaut("Gares", 0);
+                        ;
+                    } else if (tmp.nom().contains("Compagnie")) {
+                        g = (GroupeDefaut.groupes().get("Compagnies") != null)
+                            ? GroupeDefaut.groupes().get("Compagnies")
+                            : new GroupeDefaut("Compagnies", 0);
+                        ;
+                    }
+                    
+                    p = new ProprieteDefaut(tmp, ligne.getInt(5), loyer, "Libre", g, false);
                 }
 
                 tmp.possede(p);

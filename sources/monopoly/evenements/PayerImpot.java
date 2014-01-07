@@ -39,19 +39,50 @@ public class PayerImpot extends EvenementAbstrait
     public void executer()
     {
         if (cible() != destinataire) {
-            boolean doubleImpot = true;
-            for(Case g : c.groupe()) {
-                try {
-                    if(g.propriete().proprietaire().equals(cible()))
-                        doubleImpot = false;
-                } catch ( NullPointerException e ) {}
+            if (!c.propriete().groupe().nom().equals("Gares")
+                && !c.propriete().groupe().nom().equals("Compagnies")) {
+                boolean doubleImpot = true;
+                for(Case g : c.groupe()) {
+                    try {
+                        if(!g.propriete().proprietaire().equals(cible()))
+                            doubleImpot = false;
+                    } catch ( NullPointerException e ) {}
+                }
+                int somme = (doubleImpot) ?
+                            c.propriete().loyer()*2 : 
+                            c.propriete().loyer()
+                ;
+                cible().chosesAFaire().add(new Depenser(somme));
+                
+                destinataire.chosesAFaire().add(new Recette(somme));
+            } else if (c.propriete().groupe().nom().equals("Gares")) {
+                int nbGares = 0;
+                for(Case g : c.groupe()) {
+                    try {
+                        if(g.propriete().proprietaire().equals(cible()))
+                            nbGares++;
+                    } catch ( NullPointerException e ) {}
+                }
+                int somme = c.propriete().loyer() * nbGares;
+                cible().chosesAFaire().add(new Depenser(somme));
+                
+                destinataire.chosesAFaire().add(new Recette(somme));
+            } else if (c.propriete().groupe().nom().equals("Compagnies")) {
+                boolean toutesCompagnies = true;
+                for(Case g : c.groupe()) {
+                    try {
+                        if(!g.propriete().proprietaire().equals(cible()))
+                            toutesCompagnies = false;
+                    } catch ( NullPointerException e ) {}
+                }
+                int somme = toutesCompagnies
+                            ?cible().dernierTir()*1000
+                            :cible().dernierTir()*400
+                ;
+                cible().chosesAFaire().add(new Depenser(somme));
+                
+                destinataire.chosesAFaire().add(new Recette(somme));
             }
-            int somme = (doubleImpot) ?
-                        c.propriete().loyer()*2 : 
-                        c.propriete().loyer();
-            cible().chosesAFaire().add(new Depenser(somme));
-            
-            destinataire.chosesAFaire().add(new Recette(somme));
         }
     }
 }

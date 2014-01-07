@@ -240,10 +240,10 @@ public class PlateauGraphique extends JFrame implements Observer
             if (arg instanceof TirerDes) {
                 TirerDes e = (TirerDes) arg;
                 JOptionPane.showMessageDialog(null, "Vous avez fait : " + e.tir1() + ".");
-                if(e.doubletir() != 0)
+                if(e.tirDouble() != 0)
                     JOptionPane.showMessageDialog(
                         null,
-                        "Double ! Vous allez aussi avancer de : " + e.doubletir() + " cases."
+                        "Double ! Vous allez aussi avancer de : " + e.tirDouble() + " cases."
                     );
             }
             else if (arg instanceof TirerCarte)

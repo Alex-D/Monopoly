@@ -74,6 +74,16 @@ public interface Joueur
     void hypothequer();
     
     /**
+     * Renvoi la valeur du dernier lancé de dés
+     */
+    int dernierTir();
+        
+    /**
+     * Range la valeur du dernier lancé de dés
+     */
+    public void setDernierTir(int dernierTir);
+    
+    /**
      * Verse au joueur la somme spécifier
      */
     void verser(int somme);

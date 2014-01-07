@@ -29,6 +29,7 @@ public class JoueurDefaut extends Observable implements Joueur
     private Color c;
     private boolean enPrison;   // Vrai si le joueur est en prison, faux sinon
     private int nombreTour;     // Nombre de tour a passer en prison
+    private int dernierTir;
     private boolean elimine;    // Vrai si le joueur est éliminé, faux sinon
     private List<Propriete> titres;         // Les titres de propriétés du joueur
     private List<Evenement> cartes;         // Les cartes conservées par le joueur
@@ -55,6 +56,7 @@ public class JoueurDefaut extends Observable implements Joueur
         c = new Color(red, green, blue);
         
         especes         = 20000;
+        dernierTir      = 0;
         enPrison        = false;
         titres          = new ArrayList<Propriete>();
         cartes          = new ArrayList<Evenement>();
@@ -162,6 +164,16 @@ public class JoueurDefaut extends Observable implements Joueur
         
         setChanged();
         notifyObservers("elimine");
+    }
+    
+    public int dernierTir()
+    {
+        return dernierTir;
+    }
+    
+    public void setDernierTir(int dernierTir)
+    {
+        this.dernierTir = dernierTir;
     }
     
     public void verser(int somme)

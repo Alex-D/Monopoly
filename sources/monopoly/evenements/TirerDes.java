@@ -13,7 +13,7 @@ public class TirerDes extends EvenementAbstrait
 {
     private static Random generator = new Random();   // Generateur de jet de dés
     private int tir1;
-    private int tirdouble;
+    private int tirDouble;
     
     
     
@@ -26,7 +26,7 @@ public class TirerDes extends EvenementAbstrait
         cibler(j);
         
         tir1        = 0;
-        tirdouble   = 0;
+        tirDouble   = 0;
     }
     
     
@@ -50,12 +50,12 @@ public class TirerDes extends EvenementAbstrait
             this.tir1 = tir1 + tir2;
             
             if(tir1 == tir2){
-                tir1 = (int) (generator.nextFloat() * 6) + 1;
-                this.tirdouble = tir1;
-                DeplacementRelatif d2 = new DeplacementRelatif(tir1);
+                this.tirDouble = (int) (generator.nextFloat() * 6) + 1;
+                DeplacementRelatif d2 = new DeplacementRelatif(tirDouble);
                 cible().chosesAFaire().add( d2 );
             }
             cible().chosesAFaire().add( d );
+            cible().setDernierTir(tir1 + tirDouble);
         }
     }
     
@@ -64,8 +64,8 @@ public class TirerDes extends EvenementAbstrait
         return tir1;
     }
     
-    public int doubletir()
+    public int tirDouble()
     {
-        return tirdouble;
+        return tirDouble;
     }
 }
