@@ -40,6 +40,7 @@ public class Depenser extends EvenementAbstrait
      */
     public void executer()
     {
-        cible().payer(somme);
+        if (!cible().payer(somme))
+            cible().hypothequer();
     }
 }

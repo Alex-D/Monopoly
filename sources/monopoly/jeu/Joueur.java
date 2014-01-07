@@ -69,6 +69,11 @@ public interface Joueur
     boolean payer(int somme);
     
     /**
+     * Hypotheque
+     */
+    void hypothequer();
+    
+    /**
      * Verse au joueur la somme spécifier
      */
     void verser(int somme);

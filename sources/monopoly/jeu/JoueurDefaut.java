@@ -156,6 +156,14 @@ public class JoueurDefaut extends Observable implements Joueur
         return false;
     }
     
+    public void hypothequer()
+    {
+        eliminer();
+        
+        setChanged();
+        notifyObservers("elimine");
+    }
+    
     public void verser(int somme)
     {
         especes += somme;
