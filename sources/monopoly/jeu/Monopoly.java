@@ -164,11 +164,9 @@ public class Monopoly
     public void suivant()
     {
         boolean next    = false;
-        int i = 0;
-        while( joueurs.get(i) == courant)
-            i++;
+        int i = joueurs.indexOf(courant);
         try {
-            courant = joueurs.get(i);
+            courant = joueurs.get(++i);
         } catch( IndexOutOfBoundsException e ) {
             courant = joueurs.get(0);
         }
@@ -216,8 +214,8 @@ public class Monopoly
     
     public static void main(String[] args)
     {
-        Monopoly m          = new Monopoly(2);
-        PlateauGraphique f  = new PlateauGraphique(/*800, 800,*/ m);
+        Monopoly m          = new Monopoly(3);
+        PlateauGraphique f  = new PlateauGraphique(m);
         
         /*
         Scanner sc = new Scanner(System.in);
