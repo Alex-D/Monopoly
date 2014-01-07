@@ -3,6 +3,7 @@ package monopoly.gui;
 import monopoly.jeu.Monopoly;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -58,7 +59,14 @@ public class PanneauCentral extends JPanel
     public void initComponents()
     {
         setLayout(new BorderLayout());
+        
+        JPanel left     = new JPanel();
         PannelNom pn    = new PannelNom(m);
+        JScrollPane jsp = new JScrollPane(pn, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        left            .add(jsp);
+        left            .setBackground(fond);
+        jsp             .setPreferredSize(new Dimension(150, 100));
+        jsp             .setBackground(fond);
         
         JPanel jpn              = new JPanel();
         GridBagConstraints gbc  = new GridBagConstraints(); 
@@ -117,7 +125,7 @@ public class PanneauCentral extends JPanel
         gbc.insets      = new Insets(10, 0, 0, 0);
         jpn             .add(action, gbc);
         
-        add(pn, BorderLayout.WEST);
+        add(left, BorderLayout.WEST);
         add(jpn, BorderLayout.CENTER);
     }
     
