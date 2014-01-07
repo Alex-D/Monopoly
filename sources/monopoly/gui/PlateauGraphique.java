@@ -38,23 +38,14 @@ public class PlateauGraphique extends JFrame implements Observer
     
     
     
-    public PlateauGraphique(Monopoly m)
+    public PlateauGraphique(int largeur, int hauteur, Monopoly m)
     {
         
         this.m      = m;
         cases       = new ArrayList<CaseGraphique>();
         
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        GraphicsEnvironment graphicsEnvironment=GraphicsEnvironment.getLocalGraphicsEnvironment();
-        int l = (int) graphicsEnvironment.getMaximumWindowBounds().getWidth()-30;
-        int h = (int) graphicsEnvironment.getMaximumWindowBounds().getHeight()-30;
-        if( l > h )
-            l = h;
-        else
-            h = l;
-        largeur = l;
-        hauteur = h;
+        this.largeur = largeur;
+        this.hauteur = hauteur;
         
         initialiser();
         
@@ -187,7 +178,8 @@ public class PlateauGraphique extends JFrame implements Observer
         }
         
         pc = new PanneauCentral(m);
-        pc.setPreferredSize(new Dimension(largeur * 9 / 12, hauteur * 9 / 12));
+        pc.setPreferredSize(new Dimension(largeur * 8 / 12, hauteur * 8 / 12));
+        pc.setMaximumSize(new Dimension(largeur * 8 / 12, hauteur * 8 / 12));
         c.gridy         = 1;
         c.gridx         = 1;
         c.fill          = GridBagConstraints.BOTH;

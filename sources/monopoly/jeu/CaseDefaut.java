@@ -80,6 +80,8 @@ public class CaseDefaut implements Case
     public ArrayList<Case> groupe()
     {
         ArrayList<Case> list = new ArrayList<Case>();
+        if(propriete != null && propriete.groupe() == null)
+            return list;
         for(Case c : cases.values()) {
             try {
                 if(c.propriete().groupe() == propriete().groupe() )

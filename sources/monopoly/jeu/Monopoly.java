@@ -204,7 +204,7 @@ public class Monopoly
     public static void main(String[] args)
     {
         Monopoly m          = new Monopoly(2);
-        PlateauGraphique f  = new PlateauGraphique(m);
+        PlateauGraphique f  = new PlateauGraphique(800, 800, m);
         
         /*
         Scanner sc = new Scanner(System.in);
