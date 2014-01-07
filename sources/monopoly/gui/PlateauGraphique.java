@@ -48,7 +48,7 @@ public class PlateauGraphique extends JFrame implements Observer
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
         GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         device.setFullScreenWindow(this);
-        //setSize(gd.getWidth(), gd.getHeight());
+        
         this.largeur = getContentPane().getWidth();
         this.hauteur = getContentPane().getHeight();
         
@@ -56,9 +56,6 @@ public class PlateauGraphique extends JFrame implements Observer
             largeur = hauteur;
         else
             hauteur = largeur;
-        
-        //this.largeur = largeur;
-        //this.hauteur = hauteur;
         
         initialiser();
         
@@ -233,9 +230,15 @@ public class PlateauGraphique extends JFrame implements Observer
 
         if (arg == null)
             return;
-
-        if (arg.equals("argent"))
+        if (arg.equals("winner")) {
+            JOptionPane.showMessageDialog(null, "Le " + ((Joueur)o).nom() + " remporte la partie");
+            JOptionPane.showMessageDialog(null, "Fin de la partie");
+        } else if (arg.equals("argent"))
             pc.refresh();
+        else if (arg.equals("suivant"))
+            JOptionPane.showMessageDialog(null, "Au tour du joueur suivant");
+        else if (arg.equals("elimine"))
+            JOptionPane.showMessageDialog(null, "Le " + ((Joueur)o).nom() + " est éliminé de la partie");
         else {
             if (arg instanceof TirerDes) {
                 TirerDes e = (TirerDes) arg;
@@ -247,10 +250,10 @@ public class PlateauGraphique extends JFrame implements Observer
                     );
             }
             else if (arg instanceof TirerCarte)
-                JOptionPane.showMessageDialog(null, ((TirerCarte) arg).carte().nom());
+                JOptionPane.showMessageDialog(null, "Vous tirez : \"" + ((TirerCarte) arg).carte().nom() + "\"");
             else if (arg instanceof Emprisonner)
                 JOptionPane.showMessageDialog(null, "Allez en prison !");
-            else if (arg instanceof PayerImpot && ((PayerImpot)arg).destinataire() != m.courant() )
+            else if (arg instanceof PayerImpot && !((PayerImpot)arg).destinataire().equals(m.courant()) )
                 JOptionPane.showMessageDialog(null, ((PayerImpot)arg).nom());
             else if (arg instanceof Depenser)
                 JOptionPane.showMessageDialog(null, "Vous dépensez : " + ((Depenser)arg).somme() + "F");
@@ -260,11 +263,13 @@ public class PlateauGraphique extends JFrame implements Observer
                 JOptionPane.showMessageDialog(null, "Vous dépensez : " + ((Achat)arg).somme() + "F");
             else if (arg instanceof Achat && ! ((Achat)arg).peutPayer())
                 JOptionPane.showMessageDialog(null, "Vous ne possédez pas assez d'argent");
-            else if (!(arg instanceof DeplacementRelatif ||
-                       arg instanceof Deplacement        ||
-                       arg instanceof Choix              ||
-                       arg instanceof Depenser))
-                pc.addAction(arg.toString());
+            else if (!(arg instanceof DeplacementRelatif    ||
+                       arg instanceof Deplacement           ||
+                       arg instanceof Choix                 ||
+                       arg instanceof Depenser              ||
+                       arg instanceof Carte                 ||
+                       arg instanceof PayerImpot            ))
+                JOptionPane.showMessageDialog(null, arg.toString());
         }
     }
 }

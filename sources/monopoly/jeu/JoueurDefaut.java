@@ -26,10 +26,10 @@ public class JoueurDefaut extends Observable implements Joueur
     private int especes;        // Espèces possédées par le joueur
     private String nom;         // Nom du joueur
     private Case position;      // Case sur laquelle se situe le joueur
-    private Color c;
+    private Color c;            // Couleur du joueur
     private boolean enPrison;   // Vrai si le joueur est en prison, faux sinon
     private int nombreTour;     // Nombre de tour a passer en prison
-    private int dernierTir;
+    private int dernierTir;     // Valeur du dernier lancer de dé du joueur
     private boolean elimine;    // Vrai si le joueur est éliminé, faux sinon
     private List<Propriete> titres;         // Les titres de propriétés du joueur
     private List<Evenement> cartes;         // Les cartes conservées par le joueur
@@ -55,7 +55,7 @@ public class JoueurDefaut extends Observable implements Joueur
             blue    =   (int)(g.nextFloat()*256);
         c = new Color(red, green, blue);
         
-        especes         = 20000;
+        especes         = 2000;
         dernierTir      = 0;
         enPrison        = false;
         titres          = new ArrayList<Propriete>();
@@ -77,38 +77,56 @@ public class JoueurDefaut extends Observable implements Joueur
         return nom;
     }
     
-    public void joue()
+    public void verifierAction()
     {
-        if(enPrison && nombreTour != 0)
-            nombreTour --;
-        else if(enPrison)
-            liberer();
-        else {
-            while (!chosesAFaire.empty()) {
-                Evenement e = chosesAFaire.pop();
-                if (e != null) {
-                    e.cibler(this);
-                    
-                    e.executer();
-                    
-                    setChanged();
-                    notifyObservers(e);
-                }
+        while (!chosesAFaire.empty()) {
+            Evenement e = chosesAFaire.pop();
+            if (e != null) {
+                e.cibler(this);
+                
+                e.executer();
+                
+                setChanged();
+                notifyObservers(e);
             }
-            
-            chosesAFaire().add(new TirerDes(this));
+        }
+    }
+    
+    public boolean joue()
+    {
+        if(adversaires().size() == 0) {
+            setChanged();
+            notifyObservers("winner");
+            return false;
+        } else {
+            if(enPrison && nombreTour != 0)
+                nombreTour --;
+            else if(enPrison)
+                liberer();
+            else {
+                chosesAFaire().add(new TirerDes(this));
 
-            while (!chosesAFaire.empty()) {
-                Evenement e = chosesAFaire.pop();
-                if (e != null) {
-                    e.cibler(this);
-                    
-                    e.executer();
-                    
-                    setChanged();
-                    notifyObservers(e);
+                while (!chosesAFaire.empty() && joueurs.contains(this)) {
+                    Evenement e = chosesAFaire.pop();
+                    if (e != null) {
+                        e.cibler(this);
+                        
+                        e.executer();
+                        
+                        if(joueurs.size() != 1) {
+                            setChanged();
+                            notifyObservers(e);
+                        }
+                    }
                 }
             }
+            if(joueurs.size() == 1)
+                joueurs.get(0).joue();
+            else {
+                setChanged();
+                notifyObservers("suivant");
+            }
+            return true;
         }
     }
     

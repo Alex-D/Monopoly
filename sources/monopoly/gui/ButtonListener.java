@@ -22,16 +22,13 @@ public class ButtonListener implements ActionListener
     
     public void actionPerformed(ActionEvent e)
     {
-        if(e.getActionCommand().equals("Lancer les Dés")) {
-            m   .courant().joue();
-            pc  .activeFinir();
-            pc  .griseDes();
-        } else {
+        if(m.courant().joue()) {
             m   .suivant();
             pc  .refresh();
-            pc.resetAction();
-            pc  .activeDes();
-            pc  .griseFinir();
+            m   .courant().verifierAction();
+        } else {
+            m.finirPartie();
+            pc.griseDes();
         }
     }
 }

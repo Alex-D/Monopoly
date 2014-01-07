@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.JTextArea;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
@@ -28,8 +27,6 @@ public class PanneauCentral extends JPanel
     private JLabel              joueurNom;
     private JLabel              joueurArgent;
     private JButton             des;
-    private JButton             finir;
-    private static JTextArea    action;
     
     
     
@@ -45,16 +42,6 @@ public class PanneauCentral extends JPanel
     }
     
     
-    
-    public static void addAction(String s)
-    {
-        action.setText(action.getText() + "\n" + s);
-    }
-    
-    public static void resetAction()
-    {
-        action.setText("");
-    }
     
     public void initComponents()
     {
@@ -79,23 +66,14 @@ public class PanneauCentral extends JPanel
         JLabel argent   = new JLabel("Argent restant : ");
         joueurArgent    = new JLabel(m.courant().especes() + "");
         des             = new JButton("Lancer les Dés");
-        finir           = new JButton("Finir tour");
-        action          = new JTextArea();
         
         des             .addActionListener(new ButtonListener(m, this));
-        finir           .setEnabled(false);
-        finir           .addActionListener(new ButtonListener(m, this));
-        
-        action          .setEditable(false);
-        action          .setAutoscrolls(true);
         
         nom             .setPreferredSize(new Dimension(150, 25));
         joueurNom       .setPreferredSize(new Dimension(150, 25));
         argent          .setPreferredSize(new Dimension(150, 25));
         joueurArgent    .setPreferredSize(new Dimension(150, 25));
         des             .setPreferredSize(new Dimension(150, 25));
-        finir           .setPreferredSize(new Dimension(150, 25));
-        action          .setPreferredSize(new Dimension(200, 100));
         
         gbc.gridy       = 0;
         gbc.gridx       = 0;
@@ -115,16 +93,6 @@ public class PanneauCentral extends JPanel
         gbc.gridx       = 0;
         jpn             .add(des, gbc);
         
-        gbc.gridy       = 3;
-        gbc.gridx       = 0;
-        jpn             .add(finir, gbc);
-        
-        gbc.gridy       = 4;
-        gbc.gridx       = 0;
-        gbc.gridwidth   = 2;
-        gbc.insets      = new Insets(10, 0, 0, 0);
-        jpn             .add(action, gbc);
-        
         add(left, BorderLayout.WEST);
         add(jpn, BorderLayout.CENTER);
     }
@@ -135,30 +103,6 @@ public class PanneauCentral extends JPanel
     public void griseDes()
     {
         des.setEnabled(false);
-    }
-    
-    /**
-     *  Active le bouton Des
-     */
-    public void activeDes()
-    {
-        des.setEnabled(true);
-    }
-    
-    /**
-     *  Desactive le bouton Finir
-     */
-    public void griseFinir()
-    {
-        finir.setEnabled(false);
-    }
-    
-    /**
-     *  Active le bouton Finir
-     */
-    public void activeFinir()
-    {
-        finir.setEnabled(true);
     }
     
     /**

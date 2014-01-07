@@ -28,9 +28,15 @@ public interface Joueur
     String nom();
     
     /**
-     * Lance le tour du joueur puis passe au suivant, en fonction du nb
+     * Verifie qu'il ne reste plus d'actions pour le joueur courant
      */
-    void joue();
+    void verifierAction();
+    
+    /**
+     * Lance le tour du joueur, et retourne vrai si la partie continue,
+     * faux sinon.
+     */
+    boolean joue();
     
     /**
      * Indique si le joueur est emprisonné
