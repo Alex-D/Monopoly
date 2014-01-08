@@ -1,7 +1,8 @@
 Projet java Monopoly
 ====================
 
-Projet en cours de développement, à but pédagogique dans le cadre de la formation Licence Pro SIL DA2I.
+Projet à but pédagogique dans le cadre de la formation Licence Pro SIL DA2I.
+
 
 
 ## Fonctionnement
@@ -16,6 +17,7 @@ Pour lancer :
 
 Pour compiler et lancer :
 - ant
+
 
 
 ## À Propos
