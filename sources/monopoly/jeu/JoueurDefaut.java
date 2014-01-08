@@ -57,7 +57,7 @@ public class JoueurDefaut extends Observable implements Joueur
             blue    =   (int)(g.nextFloat()*256);
         c = new Color(red, green, blue);
         
-        especes         = 200000;
+        especes         = 75000;
         dernierTir      = 0;
         enPrison        = false;
         titres          = new ArrayList<Propriete>();

@@ -44,7 +44,7 @@ public class PayerImpot extends EvenementAbstrait
                 boolean doubleImpot = true;
                 for(Case g : c.groupe()) {
                     try {
-                        if(!g.propriete().proprietaire().equals(cible()))
+                        if(!g.propriete().proprietaire().equals(destinataire))
                             doubleImpot = false;
                     } catch ( NullPointerException e ) {}
                 }
@@ -59,7 +59,7 @@ public class PayerImpot extends EvenementAbstrait
                 int nbGares = 0;
                 for(Case g : c.groupe()) {
                     try {
-                        if(g.propriete().proprietaire().equals(cible()))
+                        if(g.propriete().proprietaire().equals(destinataire))
                             nbGares++;
                     } catch ( NullPointerException e ) {}
                 }
@@ -71,7 +71,7 @@ public class PayerImpot extends EvenementAbstrait
                 boolean toutesCompagnies = true;
                 for(Case g : c.groupe()) {
                     try {
-                        if(!g.propriete().proprietaire().equals(cible()))
+                        if(!g.propriete().proprietaire().equals(destinataire))
                             toutesCompagnies = false;
                     } catch ( NullPointerException e ) {}
                 }
