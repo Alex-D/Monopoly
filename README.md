@@ -7,13 +7,13 @@ Projet en cours de développement, à but pédagogique dans le cadre de la forma
 ## Fonctionnement
 
 Pour compiler :
-	- ant compile
+- ant compile
 
 Pour lancer :
-	- ant launch
+- ant launch
 
 Pour compiler et lancer :
-	- ant
+- ant
 
 
 ## À Propos
