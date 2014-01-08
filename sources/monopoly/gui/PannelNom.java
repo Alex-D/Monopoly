@@ -23,7 +23,7 @@ public class PannelNom extends JPanel
     {
         this.m  = m;
         
-        setPreferredSize(new Dimension(150, 400));
+//        setPreferredSize(new Dimension(150, 400));
     }
     
     

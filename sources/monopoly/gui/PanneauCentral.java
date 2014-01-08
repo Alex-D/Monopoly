@@ -52,7 +52,7 @@ public class PanneauCentral extends JPanel
         JScrollPane jsp = new JScrollPane(pn, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         left            .add(jsp);
         left            .setBackground(fond);
-        jsp             .setPreferredSize(new Dimension(150, 100));
+        jsp             .setPreferredSize(new Dimension(150, 300));
         jsp             .setBackground(fond);
         
         JPanel jpn              = new JPanel();

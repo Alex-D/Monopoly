@@ -212,42 +212,14 @@ public class Monopoly
     
     
     
-    public static void main(String[] args)
+    public static void main(String[] arg)
     {
-        Monopoly m          = new Monopoly(2);
-        PlateauGraphique f  = new PlateauGraphique(m);
-        
-        /*
-        Scanner sc = new Scanner(System.in);
-        
-        System.out.println("Monopoly !");
-        System.out.println("==========\n");
-        
-        while (!m.finDePartie()) {
-            System.out.println(m);
-
-            for (Joueur j : m.getJoueurs()) {
-                System.out.println("\n\nTour du joueur : " + j + " :");
-                System.out.println("Tapez 1 pour jouer, 2 pour arrêter la partie");
-
-                if (sc.nextInt() == 1) {
-                    System.out.println("Vous êtes sur la case : " + j.position().nom() + "." );
-                    System.out.println("Vous possédez : " + j.especes() + "F.");
-                    
-                    j.chosesAFaire().add(new TirerDes(j));
-
-                    while (!j.chosesAFaire().empty()) {
-                        Evenement e = j.chosesAFaire().pop();
-                        e.cibler(j);
-                        System.out.println(e);
-                        e.executer();
-                    }
-                } else {
-                    m.finirPartie();
-                    break;
-                }
-            }
-        }
-        */
+		try {
+			int nbJoueurs = Integer.parseInt(arg[0]);
+	        Monopoly m          = new Monopoly( nbJoueurs );
+		    PlateauGraphique f  = new PlateauGraphique(m);
+		} catch ( Exception e ) {
+			System.out.println("Mauvais parametre pour le nombre de joueur.");
+		}
     }
 }

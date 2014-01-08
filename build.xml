@@ -23,10 +23,14 @@
     </target>
 
     <target name="run" depends="jar">
-	    <java jar="exe/Monopoly.jar" fork="true"/>
+	    <java jar="exe/Monopoly.jar" fork="true">
+			<arg value="${arg0}"/>
+		</java>
     </target>
 	
 	<target name="launch">
-		<java jar="exe/Monopoly.jar" fork="true"/>
+		<java jar="exe/Monopoly.jar" fork="true">
+			<arg value="${arg0}"/>
+		</java>
 	</target>
 </project>
