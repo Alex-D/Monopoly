@@ -28,6 +28,11 @@ public interface Case extends Iterable<Case>
     Case getRelative(int nombre);
     
     /**
+     * Reinitialise la case
+     */
+    void reinitialiser();
+    
+    /**
      * Retourne la case suivante
      */
     Case suivante();

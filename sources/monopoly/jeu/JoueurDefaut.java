@@ -22,6 +22,7 @@ import java.util.Random;
   */
 public class JoueurDefaut extends Observable implements Joueur
 {
+    private Monopoly m;
     private int numero;         // Numero du joueur
     private int especes;        // Espèces possédées par le joueur
     private String nom;         // Nom du joueur
@@ -43,8 +44,9 @@ public class JoueurDefaut extends Observable implements Joueur
       * Crée un joueur en fonction d'un numéro d'identification,
       * de son nom, ainsi que de sa case de départ.
       */
-    public JoueurDefaut(int numero, String nom, Case position)
+    public JoueurDefaut(int numero, String nom, Case position, Monopoly m)
     {
+        this.m          = m;
         this.numero     = numero;
         this.nom        = nom;
         this.position   = position;
@@ -55,7 +57,7 @@ public class JoueurDefaut extends Observable implements Joueur
             blue    =   (int)(g.nextFloat()*256);
         c = new Color(red, green, blue);
         
-        especes         = 2000;
+        especes         = 200000;
         dernierTir      = 0;
         enPrison        = false;
         titres          = new ArrayList<Propriete>();
@@ -120,9 +122,10 @@ public class JoueurDefaut extends Observable implements Joueur
                     }
                 }
             }
-            if(joueurs.size() == 1)
+            if(joueurs.size() == 1) {
+                System.out.println("Coucou");
                 joueurs.get(0).joue();
-            else {
+            } else {
                 setChanged();
                 notifyObservers("suivant");
             }
@@ -153,8 +156,18 @@ public class JoueurDefaut extends Observable implements Joueur
     
     public void eliminer()
     {
-		joueurs.remove(this);
+		m.getJoueurs().remove(this);
         elimine = true;
+        chosesAFaire = new Stack<Evenement>();
+        Case curr = position.get(1);
+        curr.reinitialiser();
+        curr = curr.suivante();
+        while(curr.numero() != 1) {
+            curr.reinitialiser();
+            curr = curr.suivante();
+        }
+        setChanged();
+        notifyObservers();
     }
     
     public int especes()

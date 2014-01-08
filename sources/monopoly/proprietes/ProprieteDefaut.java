@@ -46,6 +46,13 @@ public class ProprieteDefaut implements Propriete
     
     
     
+    public void reinitialiser()
+    {
+        hypotheque          = false;
+        niveauImmobilier    = 0;
+        proprietaire        = null;
+    }
+    
     public Case position()
     {
         return position;

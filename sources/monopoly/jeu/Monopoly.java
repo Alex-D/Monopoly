@@ -145,7 +145,7 @@ public class Monopoly
         joueurs = new ArrayList<Joueur>();
         
         for (int i = 1; i <= nbJoueurs; i++)
-            joueurs.add(new JoueurDefaut(i, "Joueur " + i, depart));
+            joueurs.add(new JoueurDefaut(i, "Joueur " + i, depart, this));
         
         courant = joueurs.get(0);
     }

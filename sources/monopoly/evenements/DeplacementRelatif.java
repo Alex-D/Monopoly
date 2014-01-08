@@ -31,7 +31,11 @@ public class DeplacementRelatif extends EvenementAbstrait
      */
     public void executer()
     {
-        if(!cible().enPrison())
+        if (!cible().enPrison()) {
+            if (cible().position().numero() > cible().position().getRelative(nbMouvements).numero()
+                    && nbMouvements != -3 )
+                cible().chosesAFaire().add(cible().position().get(1).evenement());
             cible().placerSur(cible().position().getRelative(nbMouvements));
+        }
     }
 }

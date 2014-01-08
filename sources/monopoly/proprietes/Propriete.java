@@ -12,6 +12,11 @@ import monopoly.jeu.Case;
 public interface Propriete
 {
     /**
+     * Reinitialise la propriete
+     */
+    void reinitialiser();
+    
+    /**
      * La case du plateau de jeu associée à ce titre de propriété
      */
     Case position();

@@ -19,6 +19,7 @@ public class CaseDefaut implements Case
     private String nom;          // Intitulé de la case
     private Propriete propriete; // Propriété éventuelle
     private Evenement evenement; // Evènement éventuel
+    private Evenement evenementBase; // Evènement de base de la case
     
     private static Map<Integer, Case> cases = new HashMap<Integer, Case>(); // Map des cases du plateau
     private static int numeroMax;// Numéro maximum parmi les cases
@@ -42,6 +43,13 @@ public class CaseDefaut implements Case
     }
     
     
+    
+    public void reinitialiser()
+    {
+        evenement = evenementBase;
+        if(propriete != null)
+            propriete.reinitialiser();
+    }
     
     public int numero()
     {
@@ -103,6 +111,8 @@ public class CaseDefaut implements Case
     
     public void declenche(Evenement evenement)
     {
+        if(this.evenement == null)
+            evenementBase = evenement;
         this.evenement = evenement;
     }
     
