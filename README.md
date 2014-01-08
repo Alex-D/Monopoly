@@ -4,29 +4,16 @@ Projet java Monopoly
 Projet en cours de développement, à but pédagogique dans le cadre de la formation Licence Pro SIL DA2I.
 
 
-## Avancement du projet
+## Fonctionnement
 
-### Totalement implémenté
+Pour compiler :
+	ant compile
 
-- Tous les événements
-- Les cartes (tous types)
-- Lecture CSV
-- CaseDefaut
+Pour lancer :
+	ant launch
 
-### Partiellement implémenté
-
-- Plateau texte
-	- Afficher les groupes
-	- Afficher les prix
-- JoueurDefaut
-	- Lancer les événements au bon moment
-- Monopoly
-	- Jouer les tours, événements, etc
-
-### Pas encore commencé
-
-- Interface graphique
-
+Pour compiler et lancer :
+	ant
 
 
 ## À Propos
